@@ -1,8 +1,18 @@
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.layout.GridPane?>
+<?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<GridPane fx:controller="com.javier.pistio.controllers.MainController"
-          xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
-</GridPane>
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.javier.pistio.controllers.MainController">
+   <children>
+      <AnchorPane fx:id="root" layoutX="60.0" prefHeight="400.0" prefWidth="540.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <Pane prefHeight="400.0" prefWidth="60.0" style="-fx-background-color: #ff0039;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <JFXButton buttonType="RAISED" layoutY="56.0" onAction="#admin" prefHeight="32.0" prefWidth="60.0" ripplerFill="#575757" style="-fx-background-color: #000;" text="Admin" textFill="WHITE" />
+            <JFXButton buttonType="RAISED" layoutY="95.0" onAction="#support" prefHeight="32.0" prefWidth="60.0" ripplerFill="#575757" style="-fx-background-color: #000;" text="Support" textFill="WHITE" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
