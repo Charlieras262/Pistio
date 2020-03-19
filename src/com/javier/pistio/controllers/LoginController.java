@@ -1,6 +1,8 @@
 package com.javier.pistio.controllers;
 
 
+import com.javier.pistio.utils.ProjectTypes;
+import com.javier.pistio.utils.ProjectVariable;
 import com.jfoenix.controls.*;
 import io.socket.client.IO;
 import io.socket.client.Socket;
@@ -37,14 +39,16 @@ public class LoginController implements Initializable {
     @FXML
     private JFXPasswordField pass;
 
+    @FXML
+    private Text title;
+
     private JFXDialog dialog;
 
     @FXML
     void login(ActionEvent event) {
         if(!user.getText().equals("") && !pass.getText().equals("")){
             dialog = alert(root, "Cargando", null);
-            socket.emit("login", user.getText(), pass.getText());
-            socket.emit("newClient", hashCode());
+            socket.emit(ProjectVariable.SERVICE == ProjectTypes.ADMIN ? "loginAdmin" : "loginSupport", user.getText(), pass.getText());
         }else{
             alert(root, "Error", "Debe llenar los campos de las credenciales");
         }
@@ -75,16 +79,24 @@ public class LoginController implements Initializable {
                        dialog.close();
                        user.clear();
                        pass.clear();
+                       alert(root, "Correcto", "Session Iniciada como " + (ProjectVariable.SERVICE == ProjectTypes.ADMIN ? "Administrador" : "Soporte"));
+                       try {
+                           AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("../ui/admin_menu.fxml"));
+                           rootPane.getChildren().setAll(anchorPane);
+                       } catch (IOException e) {
+                           System.err.println("Error: No se econtro el archivo.");
+                       }
                    }
-                });
-            }).on("alert", args -> {
-                Platform.runLater(() -> {
-                    alert(root, "Alerta", args[0].toString());
                 });
             });
             socket.connect();
         } catch (URISyntaxException e) {
             System.out.println("Error: " + e);
+        }
+        if(ProjectVariable.SERVICE == ProjectTypes.ADMIN){
+            title.setText("Login Admin");
+        } else {
+            title.setText("Login Soporte");
         }
     }
 

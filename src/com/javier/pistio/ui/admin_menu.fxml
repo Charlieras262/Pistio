@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="root" prefHeight="400.0" prefWidth="600.0" styleClass="content" stylesheets="@../media/style.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.javier.pistio.controllers.AdminMenuController">
+   <children>
+      <Pane prefHeight="70.0" prefWidth="200.0" styleClass="title" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Text layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Menú Administrador" textAlignment="CENTER" wrappingWidth="600.0">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+      <JFXButton buttonType="RAISED" layoutX="158.0" layoutY="114.0" prefHeight="85.0" prefWidth="85.0" ripplerFill="#575757" styleClass="btn-menu" text="Usuarios" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </JFXButton>
+      <JFXButton buttonType="RAISED" layoutX="168.0" layoutY="124.0" prefHeight="85.0" prefWidth="85.0" ripplerFill="#575757" styleClass="btn" text="Usuarios" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </JFXButton>
+      <JFXButton buttonType="RAISED" layoutX="347.0" layoutY="114.0" prefHeight="85.0" prefWidth="85.0" ripplerFill="#575757" styleClass="btn" text="Usuarios" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </JFXButton>
+      <JFXButton buttonType="RAISED" layoutX="358.0" layoutY="124.0" prefHeight="85.0" prefWidth="85.0" ripplerFill="#575757" styleClass="btn" text="Tickets" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </JFXButton>
+      <JFXButton buttonType="RAISED" layoutX="163.0" layoutY="246.0" prefHeight="85.0" prefWidth="85.0" ripplerFill="#575757" styleClass="btn" text="Usuarios" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </JFXButton>
+      <JFXButton buttonType="RAISED" layoutX="173.0" layoutY="256.0" prefHeight="85.0" prefWidth="85.0" ripplerFill="#575757" styleClass="btn" text="Ventanillas" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </JFXButton>
+      <JFXButton buttonType="RAISED" layoutX="342.0" layoutY="241.0" prefHeight="85.0" prefWidth="85.0" ripplerFill="#575757" styleClass="btn" text="Usuarios" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </JFXButton>
+      <JFXButton buttonType="RAISED" layoutX="352.0" layoutY="251.0" prefHeight="85.0" prefWidth="85.0" ripplerFill="#575757" styleClass="btn" text="Reportes" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </JFXButton>
+      <AnchorPane layoutX="22.0" layoutY="352.0" onMouseClicked="#back" style="-fx-background-color: #0000;" styleClass="btn">
+         <children>
+            <Pane layoutX="5.0" layoutY="8.0" prefHeight="4.0" prefWidth="24.0" styleClass="back" />
+            <Pane layoutY="14.0" prefHeight="4.0" prefWidth="20.0" style="-fx-rotate: 45;" styleClass="back" />
+            <Pane layoutY="2.0" prefHeight="4.0" prefWidth="20.0" style="-fx-rotate: -45;" styleClass="back" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

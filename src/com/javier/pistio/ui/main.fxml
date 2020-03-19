@@ -8,32 +8,32 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.javier.pistio.controllers.MainController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../media/style.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.javier.pistio.controllers.MainController">
    <children>
-      <AnchorPane fx:id="root" layoutX="60.0" prefHeight="400.0" prefWidth="540.0" style="-fx-background-color: #eee;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane fx:id="root" layoutX="60.0" prefHeight="400.0" prefWidth="540.0" styleClass="content" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
+            <Pane prefHeight="70.0" prefWidth="600.0" styleClass="title" AnchorPane.bottomAnchor="330.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Text fill="#4d4d4d" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Banco Pistio" textAlignment="CENTER" wrappingWidth="600.0">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Text>
+               </children>
+            </Pane>
             <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="245.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../media/logo.jpeg" />
                </image>
             </ImageView>
-            <JFXButton buttonType="RAISED" layoutX="14.0" layoutY="337.0" onAction="#admin" prefHeight="43.0" prefWidth="80.0" ripplerFill="#575757" style="-fx-background-color: #db5151;" text="Admin" textFill="WHITE">
+            <JFXButton buttonType="RAISED" layoutX="14.0" layoutY="337.0" onAction="#admin" prefHeight="43.0" prefWidth="80.0" ripplerFill="#575757" styleClass="btn" text="Admin" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></JFXButton>
-            <JFXButton buttonType="RAISED" layoutX="506.0" layoutY="337.0" onAction="#support" prefHeight="43.0" prefWidth="80.0" ripplerFill="#575757" style="-fx-background-color: #db5151;" text="Support" textFill="WHITE">
+            <JFXButton buttonType="RAISED" layoutX="506.0" layoutY="337.0" onAction="#support" prefHeight="43.0" prefWidth="80.0" ripplerFill="#575757" styleClass="btn" text="Support" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></JFXButton>
          </children></AnchorPane>
-      <Pane prefHeight="70.0" prefWidth="600.0" style="-fx-background-color: #ddd;" AnchorPane.bottomAnchor="330.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <Text fill="#4d4d4d" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Banco Pistio" textAlignment="CENTER" wrappingWidth="600.0">
-               <font>
-                  <Font name="System Bold" size="24.0" />
-               </font>
-            </Text>
-         </children>
-      </Pane>
    </children>
 </AnchorPane>
