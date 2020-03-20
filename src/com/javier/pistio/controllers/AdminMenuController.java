@@ -11,19 +11,29 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import static com.javier.pistio.utils.Util.changeView;
+
 public class AdminMenuController implements Initializable {
 
     @FXML
-    private AnchorPane root;
+    private StackPane root;
+
+    @FXML
+    private AnchorPane rootPane;
 
     @FXML
     void back(MouseEvent event) {
         try {
             StackPane anchorPane = FXMLLoader.load(getClass().getResource("../ui/login.fxml"));
-            root.getChildren().setAll(anchorPane);
+            rootPane.getChildren().setAll(anchorPane);
         } catch (IOException e) {
             System.err.println("Error: No se econtro el archivo.");
         }
+    }
+
+    @FXML
+    void go2Users(MouseEvent event) {
+        changeView(root, rootPane, "../ui/usuarios.fxml");
     }
 
     @Override

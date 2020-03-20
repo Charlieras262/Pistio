@@ -4,41 +4,33 @@ import com.javier.pistio.utils.ProjectTypes;
 import com.javier.pistio.utils.ProjectVariable;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.text.Text;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import static com.javier.pistio.utils.Util.changeView;
 
 public class MainController implements Initializable {
 
     @FXML
-    private AnchorPane root;
+    private StackPane root;
+
+    @FXML
+    private AnchorPane rootPane;
 
     @FXML
     public void admin(ActionEvent event){
         ProjectVariable.SERVICE = ProjectTypes.ADMIN;
-        try {
-            StackPane anchorPane = FXMLLoader.load(getClass().getResource("../ui/login.fxml"));
-            root.getChildren().setAll(anchorPane);
-        } catch (IOException e) {
-            System.err.println("Error: No se econtro el archivo.");
-        }
+        changeView(root, rootPane, "../ui/login.fxml");
     }
 
     @FXML
     public void support(ActionEvent event){
         ProjectVariable.SERVICE = ProjectTypes.SUPPORT;
-        try {
-            StackPane anchorPane = FXMLLoader.load(getClass().getResource("../ui/login.fxml"));
-            root.getChildren().setAll(anchorPane);
-        } catch (IOException e) {
-            System.err.println("Error: No se econtro el archivo.");
-        }
+        changeView(root, rootPane, "../ui/login.fxml");
     }
 
     @Override

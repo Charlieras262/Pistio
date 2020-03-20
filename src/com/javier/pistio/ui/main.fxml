@@ -5,16 +5,18 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../media/style.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.javier.pistio.controllers.MainController">
+
+<StackPane fx:id="root" stylesheets="@../media/style.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.javier.pistio.controllers.MainController">
    <children>
-      <AnchorPane fx:id="root" layoutX="60.0" prefHeight="400.0" prefWidth="540.0" styleClass="content" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane fx:id="rootPane" prefHeight="400.0" prefWidth="600.0" styleClass="content">
          <children>
             <Pane prefHeight="70.0" prefWidth="600.0" styleClass="title" AnchorPane.bottomAnchor="330.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <Text fill="#4d4d4d" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Banco Pistio" textAlignment="CENTER" wrappingWidth="600.0">
+                  <Text layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Banco Pistio" textAlignment="CENTER" wrappingWidth="600.0">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
@@ -29,11 +31,14 @@
             <JFXButton buttonType="RAISED" layoutX="14.0" layoutY="337.0" onAction="#admin" prefHeight="43.0" prefWidth="80.0" ripplerFill="#575757" styleClass="btn" text="Admin" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
-               </font></JFXButton>
+               </font>
+            </JFXButton>
             <JFXButton buttonType="RAISED" layoutX="506.0" layoutY="337.0" onAction="#support" prefHeight="43.0" prefWidth="80.0" ripplerFill="#575757" styleClass="btn" text="Support" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
-               </font></JFXButton>
-         </children></AnchorPane>
+               </font>
+            </JFXButton>
+         </children>
+      </AnchorPane>
    </children>
-</AnchorPane>
+</StackPane>

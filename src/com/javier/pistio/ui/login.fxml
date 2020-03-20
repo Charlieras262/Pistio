@@ -22,7 +22,7 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </JFXButton>
-                  <AnchorPane layoutX="22.0" layoutY="285.0" onMouseClicked="#back">
+                  <AnchorPane layoutX="22.0" layoutY="285.0" onMouseClicked="#back" style="-fx-background-color: #0000;" styleClass="btn">
                      <children>
                         <Pane layoutX="5.0" layoutY="8.0" prefHeight="4.0" prefWidth="24.0" styleClass="back" />
                         <Pane layoutY="14.0" prefHeight="4.0" prefWidth="20.0" style="-fx-rotate: 45;" styleClass="back" />
