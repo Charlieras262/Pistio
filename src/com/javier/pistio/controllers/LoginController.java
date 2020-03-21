@@ -13,10 +13,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -42,7 +42,7 @@ public class LoginController implements Initializable {
     private JFXPasswordField pass;
 
     @FXML
-    private Text title;
+    private Label title;
 
     private JFXDialog dialog;
 
@@ -84,7 +84,10 @@ public class LoginController implements Initializable {
                        alert(root, rootPane,"Correcto", "Session Iniciada como " + (ProjectVariable.SERVICE == ProjectTypes.ADMIN ? "Administrador" : "Soporte"));
                        try {
                            StackPane anchorPane = FXMLLoader.load(getClass().getResource("../ui/admin_menu.fxml"));
-                           rootPane.getChildren().setAll(anchorPane);
+                           if(rootPane != null)
+                               rootPane.getChildren().setAll(anchorPane);
+                           else
+                               root.getChildren().setAll(anchorPane);
                        } catch (IOException e) {
                            System.err.println("Error: No se econtro el archivo.");
                        }

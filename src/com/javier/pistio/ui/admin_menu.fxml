@@ -1,67 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
-
 
 <StackPane fx:id="root" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.javier.pistio.controllers.AdminMenuController">
    <children>
-      <AnchorPane fx:id="rootPane" prefHeight="400.0" prefWidth="600.0" styleClass="content" stylesheets="@../media/style.css">
+      <AnchorPane fx:id="rootPane" prefHeight="600.0" prefWidth="800.0" styleClass="content" stylesheets="@../media/style.css">
          <children>
-            <Pane prefHeight="70.0" prefWidth="200.0" styleClass="title" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane prefHeight="70.0" prefWidth="200.0" styleClass="title" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <Text layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Menú Administrador" textAlignment="CENTER" wrappingWidth="600.0">
+                  <Label fx:id="title" alignment="CENTER" contentDisplay="CENTER" styleClass="text" text="Menú Administrador" wrapText="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="18.0">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
-                  </Text>
+                  </Label>
                </children>
-            </Pane>
-            <JFXButton buttonType="RAISED" layoutX="158.0" layoutY="114.0" prefHeight="85.0" prefWidth="85.0" ripplerFill="#575757" styleClass="btn-menu" text="Usuarios" textFill="WHITE">
+            </AnchorPane>
+            <JFXButton buttonType="RAISED" layoutX="258.0" layoutY="239.0" prefHeight="85.0" prefWidth="85.0" ripplerFill="#575757" styleClass="btn-menu" text="Usuarios" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </JFXButton>
-            <JFXButton buttonType="RAISED" layoutX="168.0" layoutY="124.0" onMouseClicked="#go2Users" prefHeight="85.0" prefWidth="85.0" ripplerFill="#575757" styleClass="btn" text="Usuarios" textFill="WHITE">
+            <JFXButton buttonType="RAISED" layoutX="268.0" layoutY="249.0" onMouseClicked="#go2Users" prefHeight="85.0" prefWidth="85.0" ripplerFill="#575757" styleClass="btn" text="Usuarios" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </JFXButton>
-            <JFXButton buttonType="RAISED" layoutX="347.0" layoutY="114.0" prefHeight="85.0" prefWidth="85.0" ripplerFill="#575757" styleClass="btn" text="Usuarios" textFill="WHITE">
+            <JFXButton buttonType="RAISED" layoutX="447.0" layoutY="239.0" prefHeight="85.0" prefWidth="85.0" ripplerFill="#575757" styleClass="btn" text="Usuarios" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </JFXButton>
-            <JFXButton buttonType="RAISED" layoutX="358.0" layoutY="124.0" prefHeight="85.0" prefWidth="85.0" ripplerFill="#575757" styleClass="btn" text="Tickets" textFill="WHITE">
+            <JFXButton buttonType="RAISED" layoutX="458.0" layoutY="249.0" prefHeight="85.0" prefWidth="85.0" ripplerFill="#575757" styleClass="btn" text="Tickets" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </JFXButton>
-            <JFXButton buttonType="RAISED" layoutX="163.0" layoutY="246.0" prefHeight="85.0" prefWidth="85.0" ripplerFill="#575757" styleClass="btn" text="Usuarios" textFill="WHITE">
+            <JFXButton buttonType="RAISED" layoutX="258.0" layoutY="371.0" prefHeight="85.0" prefWidth="85.0" ripplerFill="#575757" styleClass="btn" text="Usuarios" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </JFXButton>
-            <JFXButton buttonType="RAISED" layoutX="173.0" layoutY="256.0" prefHeight="85.0" prefWidth="85.0" ripplerFill="#575757" styleClass="btn" text="Ventanillas" textFill="WHITE">
+            <JFXButton buttonType="RAISED" layoutX="268.0" layoutY="381.0" prefHeight="85.0" prefWidth="85.0" ripplerFill="#575757" styleClass="btn" text="Ventanillas" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </JFXButton>
-            <JFXButton buttonType="RAISED" layoutX="342.0" layoutY="241.0" prefHeight="85.0" prefWidth="85.0" ripplerFill="#575757" styleClass="btn" text="Usuarios" textFill="WHITE">
+            <JFXButton buttonType="RAISED" layoutX="447.0" layoutY="376.0" prefHeight="85.0" prefWidth="85.0" ripplerFill="#575757" styleClass="btn" text="Usuarios" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </JFXButton>
-            <JFXButton buttonType="RAISED" layoutX="352.0" layoutY="251.0" prefHeight="85.0" prefWidth="85.0" ripplerFill="#575757" styleClass="btn" text="Reportes" textFill="WHITE">
+            <JFXButton buttonType="RAISED" layoutX="458.0" layoutY="386.0" prefHeight="85.0" prefWidth="85.0" ripplerFill="#575757" styleClass="btn" text="Reportes" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </JFXButton>
-            <AnchorPane layoutX="22.0" layoutY="352.0" onMouseClicked="#back" style="-fx-background-color: #0000;" styleClass="btn">
+            <AnchorPane layoutX="28.0" layoutY="545.0" onMouseClicked="#back" style="-fx-background-color: #0000;" styleClass="btn">
                <children>
                   <Pane layoutX="5.0" layoutY="8.0" prefHeight="4.0" prefWidth="24.0" styleClass="back" />
                   <Pane layoutY="14.0" prefHeight="4.0" prefWidth="20.0" style="-fx-rotate: 45;" styleClass="back" />

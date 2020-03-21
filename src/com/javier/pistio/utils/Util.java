@@ -7,6 +7,7 @@ import com.jfoenix.controls.JFXSpinner;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.effect.BoxBlur;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
@@ -20,9 +21,16 @@ public class Util {
         new Thread(() -> {
             try {
                 Node anchorPane = FXMLLoader.load(Util.class.getResource(url));
-                Platform.runLater(() -> rootPane.getChildren().setAll(anchorPane));
+                Platform.runLater(() -> {
+                    if(rootPane != null)
+                        rootPane.getChildren().setAll(anchorPane);
+                    else
+                        root.getChildren().clear();
+                        root.getChildren().add(anchorPane);
+                });
             } catch (IOException e) {
-                System.err.println("Error: No se econtro el archivo.");
+                Platform.runLater(() -> alert(root, rootPane, "Error", "Error al cargar el archivo especificado en la ruta \"" + url + "\""));
+                System.err.println("Error: " + e);
             }
             Platform.runLater(dialog::close);
         }).start();
@@ -37,12 +45,15 @@ public class Util {
         JFXSpinner spinner = new JFXSpinner();
         spinner.setPrefSize(30, 30);
         if(textBody != null){
-            content.setBody(new Text(textBody));
+            Label l = new Label(textBody);
+            l.getStyleClass().add("alert-txt");
+            content.setBody(l);
             JFXButton actBut = new JFXButton("OK");
             actBut.setOnAction(event -> {
                 dialog.close();
             });
             repeatFocus(actBut);
+            actBut.getStyleClass().add("btn");
             content.setActions(actBut);
         }else{
             repeatFocus(spinner);
@@ -51,13 +62,15 @@ public class Util {
         }
 
         dialog.setOnDialogClosed(event -> {
-            fx.setEffect(null);
+            if(fx != null)
+                fx.setEffect(null);
         });
 
 
         dialog.show();
 
-        fx.setEffect(blur);
+        if(fx != null)
+            fx.setEffect(blur);
         return dialog;
     }
 

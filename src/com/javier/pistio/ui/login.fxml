@@ -3,26 +3,31 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
 <StackPane fx:id="root" stylesheets="@../media/style.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.javier.pistio.controllers.LoginController">
    <children>
-      <AnchorPane fx:id="rootPane" prefHeight="400.0" prefWidth="600.0">
-         <children>
-            <Pane layoutY="70.0" prefHeight="330.0" prefWidth="600.0" styleClass="content" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0">
+      <BorderPane prefHeight="600.0" prefWidth="800.0" styleClass="content">
+         <top>
+            <AnchorPane prefHeight="70.0" prefWidth="200.0" styleClass="title" BorderPane.alignment="CENTER">
                <children>
-                  <JFXTextField fx:id="user" focusColor="#0093ff" labelFloat="true" layoutX="165.0" layoutY="49.0" prefHeight="40.0" prefWidth="270.0" promptText="Usuario" style="color: #ffffff;" styleClass="text-field" />
-                  <JFXPasswordField fx:id="pass" focusColor="#0093ff" labelFloat="true" layoutX="165.0" layoutY="133.0" prefHeight="40.0" prefWidth="270.0" promptText="Contraseña" />
-                  <JFXButton buttonType="RAISED" layoutX="165.0" layoutY="218.0" onAction="#login" prefHeight="40.0" prefWidth="270.0" ripplerFill="#737373" styleClass="btn" text="Iniciar Sisión" textFill="WHITE">
+                  <Label fx:id="title" alignment="CENTER" contentDisplay="CENTER" styleClass="text" text="Login" wrapText="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="18.0">
                      <font>
-                        <Font name="System Bold" size="14.0" />
+                        <Font name="System Bold" size="24.0" />
                      </font>
-                  </JFXButton>
-                  <AnchorPane layoutX="22.0" layoutY="285.0" onMouseClicked="#back" style="-fx-background-color: #0000;" styleClass="btn">
+                  </Label>
+               </children>
+            </AnchorPane>
+         </top>
+         <bottom>
+            <AnchorPane prefHeight="70.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <AnchorPane onMouseClicked="#back" style="-fx-background-color: #0000;" styleClass="btn" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="24.0">
                      <children>
                         <Pane layoutX="5.0" layoutY="8.0" prefHeight="4.0" prefWidth="24.0" styleClass="back" />
                         <Pane layoutY="14.0" prefHeight="4.0" prefWidth="20.0" style="-fx-rotate: 45;" styleClass="back" />
@@ -30,17 +35,27 @@
                      </children>
                   </AnchorPane>
                </children>
-            </Pane>
-            <Pane prefHeight="70.0" prefWidth="600.0" styleClass="title" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            </AnchorPane>
+         </bottom>
+         <center>
+            <AnchorPane prefHeight="400.0" prefWidth="600.0" BorderPane.alignment="CENTER">
                <children>
-                  <Text fx:id="title" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login" textAlignment="CENTER" wrappingWidth="600.0">
+                  <JFXButton buttonType="RAISED" layoutX="56.0" layoutY="345.0" maxHeight="40.0" maxWidth="270.0" onAction="#login" prefHeight="40.0" prefWidth="270.0" ripplerFill="#737373" styleClass="btn" text="Iniciar Sisión" textFill="WHITE" AnchorPane.leftAnchor="56.0" AnchorPane.rightAnchor="74.0">
                      <font>
-                        <Font name="System Bold" size="24.0" />
+                        <Font name="System Bold" size="14.0" />
                      </font>
-                  </Text>
+                  </JFXButton>
+                  <JFXTextField fx:id="user" focusColor="#0093ff" labelFloat="true" layoutX="56.0" layoutY="118.0" maxHeight="40.0" maxWidth="270.0" prefHeight="40.0" prefWidth="270.0" promptText="Usuario" style="color: #ffffff;" styleClass="text-field" AnchorPane.leftAnchor="56.0" AnchorPane.rightAnchor="74.0" />
+                  <JFXPasswordField fx:id="pass" focusColor="#0093ff" labelFloat="true" layoutX="56.0" layoutY="230.0" maxHeight="40.0" maxWidth="270.0" prefHeight="40.0" prefWidth="270.0" promptText="Contraseña" AnchorPane.leftAnchor="56.0" AnchorPane.rightAnchor="74.0" />
                </children>
-            </Pane>
-         </children>
-      </AnchorPane>
+            </AnchorPane>
+         </center>
+         <left>
+            <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+         </left>
+         <right>
+            <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+         </right>
+      </BorderPane>
    </children>
 </StackPane>

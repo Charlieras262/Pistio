@@ -18,19 +18,17 @@ public class MainController implements Initializable {
     @FXML
     private StackPane root;
 
-    @FXML
-    private AnchorPane rootPane;
 
     @FXML
     public void admin(ActionEvent event){
         ProjectVariable.SERVICE = ProjectTypes.ADMIN;
-        changeView(root, rootPane, "../ui/login.fxml");
+        changeView(root, null, "../ui/login.fxml");
     }
 
     @FXML
     public void support(ActionEvent event){
         ProjectVariable.SERVICE = ProjectTypes.SUPPORT;
-        changeView(root, rootPane, "../ui/login.fxml");
+        changeView(root, null, "../ui/login.fxml");
     }
 
     @Override
