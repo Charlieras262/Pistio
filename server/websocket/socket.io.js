@@ -25,9 +25,27 @@ module.exports = (io) => {
 
         socket.on('createUser', async user => {
             await new User(JSON.parse(user)).save()
-            const supportUsers = await User.find()
+            const supportUsers = await User.find({type: 'S'})
             socket.emit('users', supportUsers)
         });
+
+        socket.on('users', async users => {
+            const supportUsers = await User.find({type: 'S'})
+            socket.emit('users', supportUsers)
+        });
+
+        socket.on('modificarUsuario', async user => {
+            const userObj = JSON.parse(user)
+            await User.findByIdAndUpdate(userObj._id, userObj);
+            const supportUsers = await User.find({type: 'S'})
+            socket.emit('users', supportUsers)
+        })
+
+        socket.on('eliminarUsuario', async id => {
+            await User.findByIdAndDelete(id)
+            const supportUsers = await User.find({type: 'S'})
+            socket.emit('users', supportUsers)
+        })
 
         socket.on('newClient', async (client) => {
             setTimeout(() => socket.emit('alert', 'Tiempo Expirado.'), 1 * 60000);
