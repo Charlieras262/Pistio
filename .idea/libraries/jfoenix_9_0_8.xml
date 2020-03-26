@@ -7,6 +7,7 @@
       <root url="jar://$PROJECT_DIR$/lib/okhttp-3.8.1.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/okio-1.13.0.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/socket.io-client-0.9.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/gson-2.8.2.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

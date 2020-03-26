@@ -1,16 +1,24 @@
 package com.javier.pistio.utils;
 
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXDialog;
-import com.jfoenix.controls.JFXDialogLayout;
-import com.jfoenix.controls.JFXSpinner;
-import javafx.application.Platform;
-import javafx.scene.Node;
-import javafx.scene.effect.BoxBlur;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.text.Text;
+import io.socket.client.IO;
+import io.socket.client.Socket;
+import io.socket.emitter.Emitter;
+
+import java.net.URISyntaxException;
 
 public class ProjectVariable {
     public static ProjectTypes SERVICE = ProjectTypes.ADMIN;
+    public static Socket SOCKET;
+
+    public static void initSocket(Emitter.Listener listener){
+        try {
+            SOCKET = IO.socket("http://localhost:8080");
+            SOCKET.on(Socket.EVENT_CONNECT, args -> {
+                SOCKET.emit("connected", ProjectVariable.class.hashCode());
+            }).on("logged", listener);
+            SOCKET.connect();
+        } catch (URISyntaxException e) {
+            System.out.println("Error: " + e);
+        }
+    }
 }
