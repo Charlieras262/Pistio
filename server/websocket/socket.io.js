@@ -3,6 +3,11 @@ let users = {}
 
 module.exports = (io) => {
     io.on('connection', (socket) => {
+        socket.on('init', async () => {
+            const supportUsers = await User.find({ type: 'S' })
+            io.sockets.emit('users', supportUsers)
+        })
+
         socket.on('connected', data => {
             socket.nickname = data;
             socket.emit('getUsername', data);
@@ -25,26 +30,21 @@ module.exports = (io) => {
 
         socket.on('createUser', async user => {
             await new User(JSON.parse(user)).save()
-            const supportUsers = await User.find({type: 'S'})
-            socket.emit('users', supportUsers)
-        });
-
-        socket.on('users', async users => {
-            const supportUsers = await User.find({type: 'S'})
-            socket.emit('users', supportUsers)
+            const supportUsers = await User.find({ type: 'S' })
+            io.sockets.emit('users', supportUsers)
         });
 
         socket.on('modificarUsuario', async user => {
             const userObj = JSON.parse(user)
             await User.findByIdAndUpdate(userObj._id, userObj);
-            const supportUsers = await User.find({type: 'S'})
-            socket.emit('users', supportUsers)
+            const supportUsers = await User.find({ type: 'S' })
+            io.sockets.emit('users', supportUsers)
         })
 
         socket.on('eliminarUsuario', async id => {
             await User.findByIdAndDelete(id)
-            const supportUsers = await User.find({type: 'S'})
-            socket.emit('users', supportUsers)
+            const supportUsers = await User.find({ type: 'S' })
+            io.sockets.emit('users', supportUsers)
         })
 
         socket.on('newClient', async (client) => {

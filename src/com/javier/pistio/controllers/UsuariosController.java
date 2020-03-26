@@ -8,7 +8,6 @@ import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import javafx.application.Platform;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -20,7 +19,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
-import javafx.util.Callback;
 
 import java.lang.reflect.Type;
 import java.net.URL;
@@ -160,7 +158,7 @@ public class UsuariosController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        SOCKET.emit("users", "");
+        SOCKET.emit("init");
         SOCKET.on("users", args -> {
             Type type = new TypeToken<List<Soporte>>() {}.getType();
             Gson gson = new Gson();
