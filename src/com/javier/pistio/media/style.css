@@ -12,11 +12,11 @@
 }
 
 .head{
-    -fx-background-color: #000;
+    -fx-background-color: #f7f7f7;
 }
 
 .content{
-     -fx-background-color: #000;
+     -fx-background-color: #f7f7f7;
  }
 
 .btn{

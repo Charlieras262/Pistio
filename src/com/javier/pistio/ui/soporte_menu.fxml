@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<StackPane fx:id="root" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.javier.pistio.controllers.SoporteMenuController">
+    <children>
+        <AnchorPane fx:id="rootPane" prefHeight="600.0" prefWidth="800.0" styleClass="content" stylesheets="@../media/style.css">
+            <children>
+                <AnchorPane prefHeight="70.0" prefWidth="200.0" styleClass="title" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" styleClass="text" text="Menú Soporte" wrapText="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="18.0">
+                            <font>
+                                <Font name="System Bold" size="24.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </AnchorPane>
+                <JFXButton buttonType="RAISED" layoutX="275.0" layoutY="250.0" prefHeight="85.0" prefWidth="85.0" ripplerFill="#575757" styleClass="btn" text="Usuarios" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="12.0" />
+                    </font>
+                </JFXButton>
+                <JFXButton buttonType="RAISED" layoutX="286.0" layoutY="260.0" onMouseClicked="#ticketView" prefHeight="85.0" prefWidth="85.0" ripplerFill="#575757" styleClass="btn" text="Tickets" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="12.0" />
+                    </font>
+                </JFXButton>
+                <JFXButton buttonType="RAISED" layoutX="430.0" layoutY="255.0" prefHeight="85.0" prefWidth="85.0" ripplerFill="#575757" styleClass="btn" text="Usuarios" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="12.0" />
+                    </font>
+                </JFXButton>
+                <JFXButton buttonType="RAISED" layoutX="441.0" layoutY="265.0" onMouseClicked="#generarReporte" prefHeight="85.0" prefWidth="85.0" ripplerFill="#575757" styleClass="btn" text="Reportes" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="12.0" />
+                    </font>
+                </JFXButton>
+                <AnchorPane layoutX="28.0" layoutY="545.0" onMouseClicked="#back" style="-fx-background-color: #0000;" styleClass="btn">
+                    <children>
+                        <Pane layoutX="5.0" layoutY="8.0" prefHeight="4.0" prefWidth="24.0" styleClass="back" />
+                        <Pane layoutY="14.0" prefHeight="4.0" prefWidth="20.0" style="-fx-rotate: 45;" styleClass="back" />
+                        <Pane layoutY="2.0" prefHeight="4.0" prefWidth="20.0" style="-fx-rotate: -45;" styleClass="back" />
+                    </children>
+                </AnchorPane>
+            </children>
+        </AnchorPane>
+    </children>
+</StackPane>

@@ -65,20 +65,20 @@ public class LoginController implements Initializable {
             initSocket(args -> {
                 Platform.runLater(() -> {
                     if(!(boolean)args[0]){
-                        dialog.close();
+                        closeDialog();
                         alert(root, rootPane,"Error", "Credenciales Invalidas");
                     }else{
-                        dialog.close();
+                        closeDialog();
                         user.clear();
                         pass.clear();
                         try {
-                            StackPane anchorPane = FXMLLoader.load(getClass().getResource((ProjectVariable.SERVICE == ProjectTypes.ADMIN ? "../ui/admin_menu.fxml" : "../ui/admin_menu.fxml")));
+                            StackPane anchorPane = FXMLLoader.load(getClass().getResource((ProjectVariable.SERVICE == ProjectTypes.ADMIN ? "../ui/admin_menu.fxml" : "../ui/soporte_menu.fxml")));
                             if(rootPane != null)
                                 rootPane.getChildren().setAll(anchorPane);
                             else
                                 root.getChildren().setAll(anchorPane);
                         } catch (IOException e) {
-                            System.err.println("Error: No se econtro el archivo.");
+                            System.err.println("Error: No se econtro el archivo." + e.getMessage());
                         }
                     }
                 });
@@ -88,6 +88,21 @@ public class LoginController implements Initializable {
             } else {
                 title.setText("Login Soporte");
             }
+        }
+    }
+
+    private void closeDialog(){
+        if(dialog == null){
+            new Thread(() -> {
+                while(true){
+                    if(dialog != null){
+                        dialog.close();
+                        break;
+                    }
+                }
+            }).start();
+        }else{
+            dialog.close();
         }
     }
 }

@@ -1,19 +1,21 @@
-const express = require('express')
-const morgan = require('morgan')
-const database = require('./database')
+const express = require('express');
+const morgan = require('morgan');
+const database = require('./database');
 
-const app = express()
+let users = {};
+
+const app = express();
 require('./config/verify').createAdminUser();
 
 //Setting
-app.set("port", process.env.PORT || 8080)
+app.set("port", process.env.PORT || 8080);
 
 //Database Connection
-database()
+database();
 
 //MiddleWares
-app.use(morgan('dev'))
-app.use(express.json())
+app.use(morgan('dev'));
+app.use(express.json());
 
 // Starting Server
 var server = require('http').Server(app);
