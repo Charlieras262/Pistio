@@ -25,8 +25,8 @@
                         <Pane layoutY="2.0" prefHeight="4.0" prefWidth="20.0" style="-fx-rotate: -45;" styleClass="back" />
                     </children>
                 </AnchorPane>
-            <JFXComboBox fx:id="tipo" focusColor="#0093ff" labelFloat="true" layoutX="265.0" layoutY="191.0" onAction="#setTipo" prefHeight="40.0" prefWidth="270.0" promptText="Tipo" />
-            <JFXComboBox fx:id="pref" focusColor="#0093ff" labelFloat="true" layoutX="265.0" layoutY="285.0" onAction="#setPref" prefHeight="40.0" prefWidth="270.0" promptText="Preferencia" />
+            <JFXComboBox fx:id="tipo" focusColor="#0093ff" labelFloat="true" layoutX="265.0" layoutY="191.0" prefHeight="40.0" prefWidth="270.0" promptText="Tipo" />
+            <JFXComboBox fx:id="pref" focusColor="#0093ff" labelFloat="true" layoutX="265.0" layoutY="285.0" prefHeight="40.0" prefWidth="270.0" promptText="Preferencia" />
             <JFXButton buttonType="RAISED" layoutX="265.0" layoutY="370.0" maxHeight="40.0" maxWidth="270.0" onMouseClicked="#generarTicket" prefHeight="40.0" prefWidth="270.0" ripplerFill="#737373" styleClass="btn" text="Generar Ticket" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />

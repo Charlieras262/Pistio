@@ -8,6 +8,8 @@ import java.net.URISyntaxException;
 
 public class ProjectVariable {
     public static ProjectTypes SERVICE = ProjectTypes.ADMIN;
+    public static final String WM = "WATERMARK";
+    public static final String HEADER = "header||HEADER";
     public static Socket SOCKET;
 
     public static void initSocket(Emitter.Listener listener){

@@ -66,11 +66,11 @@ public class Util {
                 fx.setEffect(null);
         });
 
+        if(fx != null)
+            fx.setEffect(blur);
 
         dialog.show();
 
-        if(fx != null)
-            fx.setEffect(blur);
         return dialog;
     }
 
