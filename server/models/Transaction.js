@@ -3,11 +3,10 @@ const { Schema } = mongoose;
 
 const TransactionSchema = new Schema({
     type: {type: String, required: true},
-    support: {type: Schema.ObjectId, ref: 'Support', required: true },
-    client: {type: Schema.ObjectId, ref: 'Client', required: true },
+    correl: {type: Number, required: true},
+    support: {type: Schema.ObjectId, ref: 'User', required: false },
     hStart: {type: Date, required: true},
-    hEnd: {type: Date, required: false},
-    state: {type: String, required: false, default: 'WAITING'}
+    hEnd: {type: Date, required: false}
 });
 
 module.exports = mongoose.model('Transaction', TransactionSchema);

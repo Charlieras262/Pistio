@@ -16,7 +16,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 
 import java.awt.*;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -24,6 +23,7 @@ import java.net.URL;
 import java.util.Date;
 import java.util.ResourceBundle;
 
+import static com.javier.pistio.utils.ProjectVariable.SOCKET;
 import static com.javier.pistio.utils.Util.changeView;
 
 public class TicketViewController implements Initializable {
@@ -39,32 +39,25 @@ public class TicketViewController implements Initializable {
 
     @FXML
     void back(MouseEvent event) {
-        changeView(root, rootPane, "../ui/soporte_menu.fxml");
+        changeView(root, rootPane, "../ui/soporte_menu.fxml", true);
     }
 
     @FXML
     void generarTicket(MouseEvent event) {
-        generatePDF();
+        String type = (tipo.getValue().getText().equals("Caja") ? "C" : tipo.getValue().getText().equals("Servicio al Cliente") ? "S" : "R");
+        type =  pref.getValue().getText().equals("Sin Preferencias") ? type : type + "P";
+        tipo.getSelectionModel().clearSelection();
+        pref.getSelectionModel().clearSelection();
+        SOCKET.emit("createTransaction", type);
     }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-
-        ObservableList<Label> tipos = FXCollections.observableArrayList(createLable("Caja"), createLable("Servicio al Cliente"), createLable("Creditos"));
-        ObservableList<Label> prefs = FXCollections.observableArrayList(createLable("Sin Preferencias"), createLable("Adulto Mayor"), createLable("Discapacidad"), createLable("Embarazo"));
-
-        tipo.setItems(tipos);
-        pref.setItems(prefs);
-    }
-
-    public void generatePDF() {
+    public void generatePDF(String fileName) {
         try {
-            String fileName = (tipo.getValue().getText().equals("Caja") ? "C" : tipo.getValue().getText().equals("Servicio al Cliente") ? "S" : "R") + "001";
             Document document = new Document();
             File file = new File(fileName + ".pdf");
             FileOutputStream fos = new FileOutputStream(file);
 
-            PdfWriter.getInstance(document,fos);
+            PdfWriter.getInstance(document, fos);
 
             if (!document.isOpen()) {
                 document.open();
@@ -119,17 +112,21 @@ public class TicketViewController implements Initializable {
         return doc;
     }
 
-    private void openTicket(ByteArrayOutputStream baos, FileOutputStream fos, String fileName) {
-        try {
-            baos.writeTo(fos);
-            fos.close();
-            Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + new File(fileName).getPath());
-        } catch (IOException e) {
-            System.out.println(e);
-        }
-    }
-
     private Label createLable(String text){
         return new Label(text);
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
+        ObservableList<Label> tipos = FXCollections.observableArrayList(createLable("Caja"), createLable("Atención al Cliente"), createLable("Créditos"));
+        ObservableList<Label> prefs = FXCollections.observableArrayList(createLable("Sin Preferencias"), createLable("Adulto Mayor"), createLable("Discapacidad"), createLable("Embarazo"));
+
+        tipo.setItems(tipos);
+        pref.setItems(prefs);
+
+        SOCKET.on("newTransaction", args -> {
+            generatePDF( args[0].toString());
+        });
     }
 }

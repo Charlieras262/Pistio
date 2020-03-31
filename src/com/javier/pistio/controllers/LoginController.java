@@ -12,7 +12,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 
@@ -23,7 +22,6 @@ import java.util.ResourceBundle;
 import static com.javier.pistio.utils.ProjectVariable.SOCKET;
 import static com.javier.pistio.utils.ProjectVariable.initSocket;
 import static com.javier.pistio.utils.Util.alert;
-import static com.javier.pistio.utils.Util.changeView;
 
 public class LoginController implements Initializable {
 
@@ -46,33 +44,38 @@ public class LoginController implements Initializable {
 
     @FXML
     void login(ActionEvent event) {
-        if(!user.getText().equals("") && !pass.getText().equals("")){
+        if(!user.getText().isEmpty() && !pass.getText().isEmpty()){
             dialog = alert(root, rootPane,"Cargando", null);
-            SOCKET.emit("login", user.getText(), pass.getText(), ProjectVariable.SERVICE == ProjectTypes.ADMIN ? "A" : "S");
+            SOCKET.emit("login", user.getText(), pass.getText());
         }else{
-            alert(root, rootPane,"Error", "Debe llenar los campos de las credenciales");
+            alert(root, rootPane,"Error", "Debe llenar los campos");
         }
-    }
-
-    @FXML
-    void back(MouseEvent event) {
-        changeView(root, rootPane, "../ui/main.fxml");
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         if(SOCKET == null){
-            initSocket(args -> {
+            initSocket();
+            SOCKET.on("logged", args -> {
                 Platform.runLater(() -> {
                     if(!(boolean)args[0]){
+                        alert(root, rootPane,"Error", args[2].toString());
                         closeDialog();
-                        alert(root, rootPane,"Error", "Credenciales Invalidas");
                     }else{
                         closeDialog();
                         user.clear();
                         pass.clear();
                         try {
-                            StackPane anchorPane = FXMLLoader.load(getClass().getResource((ProjectVariable.SERVICE == ProjectTypes.ADMIN ? "../ui/admin_menu.fxml" : "../ui/soporte_menu.fxml")));
+                            String url;
+                            switch (args[1].toString().charAt(0)){
+                                case 'A': url = "../ui/admin_menu.fxml"; break;
+                                case 'G': url = "../ui/soporte_menu.fxml"; break;
+                                case 'C': url = ""; break;
+                                case 'S': url = ""; break;
+                                case 'R': url = ""; break;
+                                default: url = "../ui/login.fxml";
+                            }
+                            StackPane anchorPane = FXMLLoader.load(getClass().getResource(url));
                             if(rootPane != null)
                                 rootPane.getChildren().setAll(anchorPane);
                             else
@@ -86,7 +89,7 @@ public class LoginController implements Initializable {
             if(ProjectVariable.SERVICE == ProjectTypes.ADMIN){
                 title.setText("Login Admin");
             } else {
-                title.setText("Login Soporte");
+                title.setText("Login Colaborador");
             }
         }
     }

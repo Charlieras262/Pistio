@@ -3,10 +3,7 @@ package com.javier.pistio.controllers;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.javier.pistio.modelos.Soporte;
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXDialog;
-import com.jfoenix.controls.JFXPasswordField;
-import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.*;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
@@ -14,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
@@ -50,9 +48,12 @@ public class UsuariosController implements Initializable {
     private TableView<Soporte> dataTable;
 
     @FXML
-    private TableColumn<Soporte, String> cId, cNombre, cPass, cApellido, cUsuario;
+    private TableColumn<Soporte, String> cId, cNombre, cPass, cApellido, cUsuario, cType;
 
     @FXML private JFXButton add, nuevo, del, mod;
+
+    @FXML
+    private JFXComboBox<Label> type;
 
     private JFXDialog dialog;
 
@@ -62,15 +63,17 @@ public class UsuariosController implements Initializable {
             limpiar();
             add.setDisable(true);
             nuevo.setDisable(false);
+            toggleDisableFields(false);
         } else {
-            changeView(root, rootPane, "../ui/admin_menu.fxml");
+            changeView(root, rootPane, "../ui/admin_menu.fxml", true);
         }
     }
 
     @FXML
     void crear(ActionEvent event) {
         dialog = alert(root, rootPane,"Creando Usuario", null);
-        Soporte soporte = new Soporte(nombre.getText(), apellido.getText(), usuario.getText(), pass.getText());
+        Soporte soporte = newSoporte();
+        soporte.setType(type.getValue().getText().equals("Caja") ? "C" : type.getValue().getText().equals("Atención al Cliente") ? "S" : type.getValue().getText().equals("Créditos") ? "R" : type.getValue().getText().equals("Gestor") ? "G" : "P");
         limpiar();
         SOCKET.emit("createUser", soporte);
         add.setDisable(true);
@@ -89,10 +92,11 @@ public class UsuariosController implements Initializable {
     @FXML
     void modificar(ActionEvent event) {
         dialog = alert(root, rootPane,"Modificando Usuario", null);
-        Soporte soporte = new Soporte(nombre.getText(), apellido.getText(), usuario.getText(), pass.getText());
+        Soporte soporte = newSoporte();
         soporte.setId(getUsuarioSeleccionado().getId());
+        soporte.setType(type.getValue().getText().equals("Caja") ? "C" : type.getValue().getText().equals("Atención al Cliente") ? "S" : type.getValue().getText().equals("Créditos") ? "R" : type.getValue().getText().equals("Gestor") ? "G" : "P");
+
         SOCKET.emit("modificarUsuario", soporte.toJSON());
-        System.out.println(soporte.toJSON());
         limpiar();
         add.setDisable(true);
         nuevo.setDisable(false);
@@ -112,7 +116,13 @@ public class UsuariosController implements Initializable {
         add.setDisable(false);
         mod.setDisable(true);
         del.setDisable(true);
+        toggleDisableFields(true);
+        type.getSelectionModel().clearSelection();
         dataTable.getSelectionModel().clearSelection();
+    }
+
+    private Soporte newSoporte(){
+        return new Soporte(nombre.getText(), apellido.getText(), usuario.getText(), pass.getText());
     }
 
     public Soporte getUsuarioSeleccionado() {
@@ -131,29 +141,45 @@ public class UsuariosController implements Initializable {
         cApellido.setCellValueFactory(param -> param.getValue().apellidoProperty());
         cUsuario.setCellValueFactory(param -> param.getValue().usuarioProperty());
         cPass.setCellValueFactory(param -> param.getValue().passProperty());
+        cType.setCellValueFactory(param -> param.getValue().typeProperty());
 
         dataTable.setItems(usuarios);
 
         final ObservableList<Soporte> tablaPersonaSel = dataTable.getSelectionModel().getSelectedItems();
-        tablaPersonaSel.addListener((ListChangeListener<Soporte>) c -> ponerPersonaSeleccionada());
+        tablaPersonaSel.addListener((ListChangeListener<Soporte>) c -> setSelectedUser());
     }
 
-    private void ponerPersonaSeleccionada() {
+    private void setSelectedUser() {
         final Soporte soporte = getUsuarioSeleccionado();
 
         if (soporte != null) {
+
+            toggleDisableFields(true);
 
             // Pongo los textFields con los datos correspondientes
             nombre.setText(soporte.getNombre());
             apellido.setText(soporte.getApellido());
             usuario.setText(soporte.getUsuario());
             pass.setText(soporte.getPass());
+            type.getSelectionModel().select(soporte.getType().equals("C") ? 0 : soporte.getType().equals("S") ? 1 : soporte.getType().equals("R") ? 2 : soporte.getType().equals("G") ? 3 : 4);
 
             // Pongo los botones en su estado correspondiente
             mod.setDisable(false);
             del.setDisable(false);
             add.setDisable(true);
         }
+    }
+
+    private Label createLable(String text){
+        return new Label(text);
+    }
+
+    private void toggleDisableFields(boolean status){
+        nombre.setDisable(!status);
+        apellido.setDisable(!status);
+        usuario.setDisable(!status);
+        pass.setDisable(!status);
+        type.setDisable(!status);
     }
 
     @Override
@@ -168,6 +194,8 @@ public class UsuariosController implements Initializable {
                 if(dialog != null) dialog.close();
             });
         });
+        ObservableList<Label> tipos = FXCollections.observableArrayList(createLable("Caja"), createLable("Atención al Cliente"), createLable("Créditos"), createLable("Gestor"), createLable("Prefencias"));
+        type.setItems(tipos);
         inicializarTabla();
     }
 }

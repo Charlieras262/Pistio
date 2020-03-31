@@ -1,6 +1,5 @@
 package com.javier.pistio.modelos;
 
-import com.google.gson.Gson;
 import javafx.beans.property.SimpleStringProperty;
 
 public class Soporte {
@@ -75,6 +74,18 @@ public class Soporte {
 
     public void setPass(String pass) {
         this.pass = pass;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public SimpleStringProperty typeProperty(){
+        return new SimpleStringProperty(type.equals("C") ? "Caja" : type.equals("S") ? "Atención al Cliente" : type.equals("R") ? "Créditos" : type.equals("G") ? "Gestor" : "Preferencias");
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     @Override

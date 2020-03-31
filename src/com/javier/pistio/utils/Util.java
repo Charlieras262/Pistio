@@ -16,8 +16,9 @@ import javafx.scene.text.Text;
 import java.io.IOException;
 
 public class Util {
-    public static void changeView(StackPane root, AnchorPane rootPane, String url) {
+    public static void changeView(StackPane root, AnchorPane rootPane, String url, boolean showDialog) {
         JFXDialog dialog = alert(root, rootPane, "Cargando", null);
+        if(!showDialog) dialog.close();
         new Thread(() -> {
             try {
                 Node anchorPane = FXMLLoader.load(Util.class.getResource(url));

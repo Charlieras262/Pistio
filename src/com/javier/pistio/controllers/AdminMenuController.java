@@ -33,7 +33,7 @@ public class AdminMenuController implements Initializable {
 
     @FXML
     void go2Users(MouseEvent event) {
-        changeView(root, rootPane, "../ui/usuarios.fxml");
+        changeView(root, rootPane, "../ui/usuarios.fxml", true);
     }
 
     @Override

@@ -21,7 +21,7 @@ public class SoporteMenuController implements Initializable {
 
     @FXML
     void back(MouseEvent event) {
-        changeView(root, rootPane, "../ui/login.fxml");
+        changeView(root, rootPane, "../ui/login.fxml", true);
     }
 
     @FXML
@@ -31,7 +31,7 @@ public class SoporteMenuController implements Initializable {
 
     @FXML
     void ticketView(MouseEvent event) {
-        changeView(root, rootPane, "../ui/ticket_view.fxml");
+        changeView(root, rootPane, "../ui/ticket_view.fxml", true);
     }
 
     @Override

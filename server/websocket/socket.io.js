@@ -1,17 +1,10 @@
 const User = require('../models/User');
-const five = require("johnny-five");
-var board = null;
-
-board = new five.Board();
+const Turn = require('../models/Turn');
 
 module.exports = (io) => {
-    board.on("ready", function () {
-        
-    });
-
     io.on('connection', (socket) => {
         socket.on('init', async () => {
-            const supportUsers = await User.find({ type: 'S' });
+            const supportUsers = await User.find({ type: { $ne: 'A' } });
             io.sockets.emit('users', supportUsers)
         });
 
@@ -20,35 +13,35 @@ module.exports = (io) => {
             socket.emit('getUsername', data);
         });
 
-        socket.on('login', async (username, pass, type) => {
+        socket.on('login', async (username, pass) => {
             const user = await User.findOne({ usuario: username });
             if (!user) {
-                socket.emit('logged', false)
+                socket.emit('logged', false, user.type, "El colaborador ingresado no existe.")
             } else {
-                if (pass == user.pass && type == user.type) {
-                    socket.emit('logged', true, user.type)
+                if (pass != user.pass) {
+                    socket.emit('logged', false, user.type, "Contraseña incorrecta.")
                 } else {
-                    socket.emit('logged', false, user.type)
+                    socket.emit('logged', true, user.type, "Acceso Concedido.")
                 }
             }
         });
 
         socket.on('createUser', async user => {
             await new User(JSON.parse(user)).save();
-            const supportUsers = await User.find({ type: 'S' });
+            const supportUsers = await User.find({ type: { $ne: 'A' } });
             io.sockets.emit('users', supportUsers)
         });
 
         socket.on('modificarUsuario', async user => {
             const userObj = JSON.parse(user);
             await User.findByIdAndUpdate(userObj._id, userObj);
-            const supportUsers = await User.find({ type: 'S' });
+            const supportUsers = await User.find({ type: { $ne: 'A' } });
             io.sockets.emit('users', supportUsers)
         });
 
         socket.on('eliminarUsuario', async id => {
             await User.findByIdAndDelete(id);
-            const supportUsers = await User.find({ type: 'S' });
+            const supportUsers = await User.find({ type: { $ne: 'A' } });
             io.sockets.emit('users', supportUsers)
         });
 
@@ -56,14 +49,18 @@ module.exports = (io) => {
             setTimeout(() => socket.emit('alert', 'Tiempo Expirado.'), 1 * 60000);
         });
 
-        socket.on('newTicket', state => {
-            led = new five.Led(12);
-            if(state){
-                led.on();
-            } else {
-                led.off();
-            }
-        })
-    });
+        socket.on('createTransaction', async (type) => {
+            const correl = await Turn.find({ type }).countDocuments() + 1;
+            const turn = new Turn({ type, correl, state: "E" }); //E = Esperando, A: Atendido, X: Cancelado
+            await turn.save();
+            socket.emit('newTransaction', `${type}${addZero(correl)}`);
+            console.log(`${type}${addZero(correl)}`)
+        });
 
+    });
 };
+
+function addZero(number) {
+    if (number < 10) return `00${number}`;
+    if (number < 100) return `0${number}`
+}

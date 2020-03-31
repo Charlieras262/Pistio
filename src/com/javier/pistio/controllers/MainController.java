@@ -1,11 +1,9 @@
 package com.javier.pistio.controllers;
 
-import com.javier.pistio.utils.ProjectTypes;
-import com.javier.pistio.utils.ProjectVariable;
-import javafx.event.ActionEvent;
+import com.jfoenix.controls.JFXToggleButton;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 
 import java.net.URL;
@@ -18,20 +16,18 @@ public class MainController implements Initializable {
     @FXML
     private StackPane root;
 
-
     @FXML
-    public void admin(ActionEvent event){
-        ProjectVariable.SERVICE = ProjectTypes.ADMIN;
-        changeView(root, null, "../ui/login.fxml");
-    }
-
-    @FXML
-    public void support(ActionEvent event){
-        ProjectVariable.SERVICE = ProjectTypes.SUPPORT;
-        changeView(root, null, "../ui/login.fxml");
-    }
+    private JFXToggleButton pref;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        new Thread(() ->{
+            try {
+                Thread.sleep(500);
+                Platform.runLater(() -> changeView(root, null, "../ui/login.fxml",false));
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }).start();
     }
 }
