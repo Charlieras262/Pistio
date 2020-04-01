@@ -8,6 +8,10 @@ module.exports = (io) => {
             io.sockets.emit('users', supportUsers)
         });
 
+        socket.on('init', type => {
+            getTruns(io, type)
+        });
+
         socket.on('connected', data => {
             socket.nickname = data;
             socket.emit('getUsername', data);
@@ -16,7 +20,7 @@ module.exports = (io) => {
         socket.on('login', async (username, pass) => {
             const user = await User.findOne({ usuario: username });
             if (!user) {
-                socket.emit('logged', false, user.type, "El colaborador ingresado no existe.")
+                socket.emit('logged', false, "", "El colaborador ingresado no existe.")
             } else {
                 if (pass != user.pass) {
                     socket.emit('logged', false, user.type, "Contraseña incorrecta.")
@@ -51,16 +55,25 @@ module.exports = (io) => {
 
         socket.on('createTransaction', async (type) => {
             const correl = await Turn.find({ type }).countDocuments() + 1;
-            const turn = new Turn({ type, correl, state: "E" }); //E = Esperando, A: Atendido, X: Cancelado
+            const turn = new Turn({ type, correl, pref: type == 'P', state: "E" }); //E = Esperando, A: Atendido, X: Cancelado
             await turn.save();
             socket.emit('newTransaction', `${type}${addZero(correl)}`);
-            console.log(`${type}${addZero(correl)}`)
+            console.log(`${type}${addZero(correl)}`);
+            getTruns(io, type)
         });
 
     });
 };
 
+const getTruns = async (io, type) => {
+    const query = type != 'P' ? { type, state: "E" } : { pref: true, state: "E" };
+    const turns = await Turn.find(query);
+
+    io.sockets.emit(`newTurn${type}`, turns)
+};
+
 function addZero(number) {
     if (number < 10) return `00${number}`;
-    if (number < 100) return `0${number}`
+    if (number < 100) return `0${number}`;
+    return number;
 }

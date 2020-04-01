@@ -1,7 +1,6 @@
 package com.javier.pistio.controllers;
 
 
-import com.javier.pistio.utils.ProjectTypes;
 import com.javier.pistio.utils.ProjectVariable;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXPasswordField;
@@ -70,9 +69,10 @@ public class LoginController implements Initializable {
                             switch (args[1].toString().charAt(0)){
                                 case 'A': url = "../ui/admin_menu.fxml"; break;
                                 case 'G': url = "../ui/soporte_menu.fxml"; break;
-                                case 'C': url = ""; break;
-                                case 'S': url = ""; break;
-                                case 'R': url = ""; break;
+                                case 'C': ProjectVariable.SERVICE = "Caja"; url = "../ui/colaborador_view.fxml"; break;
+                                case 'S': ProjectVariable.SERVICE = "Atención al Cliente"; url = "../ui/colaborador_view.fxml"; break;
+                                case 'R': ProjectVariable.SERVICE = "Créditos"; url = "../ui/colaborador_view.fxml"; break;
+                                case 'P': ProjectVariable.SERVICE = "Preferencias"; url = "../ui/colaborador_view.fxml"; break;
                                 default: url = "../ui/login.fxml";
                             }
                             StackPane anchorPane = FXMLLoader.load(getClass().getResource(url));
@@ -86,11 +86,6 @@ public class LoginController implements Initializable {
                     }
                 });
             });
-            if(ProjectVariable.SERVICE == ProjectTypes.ADMIN){
-                title.setText("Login Admin");
-            } else {
-                title.setText("Login Colaborador");
-            }
         }
     }
 

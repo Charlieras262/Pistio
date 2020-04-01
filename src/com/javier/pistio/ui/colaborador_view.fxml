@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<StackPane fx:id="root" stylesheets="@../media/style.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.javier.pistio.controllers.ColaboradorViewController">
+   <children>
+      <AnchorPane fx:id="rootPane" prefHeight="600.0" prefWidth="800.0" styleClass="content">
+         <children>
+            <AnchorPane prefHeight="70.0" prefWidth="200.0" styleClass="title" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+               <children>
+                  <Label fx:id="title" alignment="CENTER" contentDisplay="CENTER" styleClass="text" text="View" wrapText="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="18.0">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <JFXButton buttonType="RAISED" layoutX="257.0" layoutY="315.0" maxHeight="40.0" maxWidth="270.0" onMouseClicked="#next" prefHeight="40.0" prefWidth="128.0" ripplerFill="#737373" styleClass="btn" text="Next" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </JFXButton>
+            <JFXButton buttonType="RAISED" layoutX="428.0" layoutY="315.0" maxHeight="40.0" maxWidth="270.0" onMouseClicked="#cancelar" prefHeight="40.0" prefWidth="128.0" ripplerFill="#737373" styleClass="btn" text="Cancelar" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </JFXButton>
+            <JFXButton buttonType="RAISED" layoutX="604.0" layoutY="315.0" maxHeight="40.0" maxWidth="270.0" onMouseClicked="#finalizar" prefHeight="40.0" prefWidth="128.0" ripplerFill="#737373" styleClass="btn" text="Finalizar" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </JFXButton>
+            <JFXListView fx:id="turnList" layoutY="70.0" prefHeight="531.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="220.0" />
+            <JFXListView fx:id="prefList" prefHeight="150.0" AnchorPane.topAnchor="70.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>

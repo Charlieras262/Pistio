@@ -44,8 +44,8 @@ public class TicketViewController implements Initializable {
 
     @FXML
     void generarTicket(MouseEvent event) {
-        String type = (tipo.getValue().getText().equals("Caja") ? "C" : tipo.getValue().getText().equals("Servicio al Cliente") ? "S" : "R");
-        type =  pref.getValue().getText().equals("Sin Preferencias") ? type : type + "P";
+        String type = (tipo.getValue().getText().equals("Caja") ? "C" : tipo.getValue().getText().equals("Atención al Cliente") ? "S" : "R");
+        type =  pref.getValue().getText().equals("Sin Preferencias") ? type : "P";
         tipo.getSelectionModel().clearSelection();
         pref.getSelectionModel().clearSelection();
         SOCKET.emit("createTransaction", type);

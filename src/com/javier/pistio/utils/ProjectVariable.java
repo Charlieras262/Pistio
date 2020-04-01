@@ -6,9 +6,7 @@ import io.socket.client.Socket;
 import java.net.URISyntaxException;
 
 public class ProjectVariable {
-    public static ProjectTypes SERVICE = ProjectTypes.ADMIN;
-    public static final String WM = "WATERMARK";
-    public static final String HEADER = "header||HEADER";
+    public static String SERVICE = "View";
     public static Socket SOCKET;
 
     public static void initSocket(){

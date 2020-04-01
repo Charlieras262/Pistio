@@ -83,4 +83,10 @@ public class Util {
             }
         });
     }
+
+    public static String addZeros(int correl){
+        if(correl < 10) return "00" + correl;
+        if(correl < 100) return "00" + correl;
+        return String.valueOf(correl);
+    }
 }
