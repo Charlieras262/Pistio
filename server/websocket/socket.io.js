@@ -1,6 +1,8 @@
 const User = require('../models/User');
 const Turn = require('../models/Turn');
 
+let users = [];
+
 module.exports = (io) => {
     io.on('connection', (socket) => {
         socket.on('init', async () => {
@@ -12,11 +14,6 @@ module.exports = (io) => {
             getTruns(io, type)
         });
 
-        socket.on('connected', data => {
-            socket.nickname = data;
-            socket.emit('getUsername', data);
-        });
-
         socket.on('login', async (username, pass) => {
             const user = await User.findOne({ usuario: username });
             if (!user) {
@@ -26,8 +23,12 @@ module.exports = (io) => {
                     socket.emit('logged', false, user.type, "Contraseña incorrecta.")
                 } else {
                     socket.emit('logged', true, user.type, "Acceso Concedido.")
+                    socket.nickname = {type: user.type, name: user.usuario};
+                    if(user.type == "P") io.sockets.emit('preferencesConnected', true)
+                    users.push(socket)
                 }
             }
+
         });
 
         socket.on('createUser', async user => {
@@ -61,6 +62,20 @@ module.exports = (io) => {
             console.log(`${type}${addZero(correl)}`);
             getTruns(io, type)
         });
+
+        socket.on('logout', (type, name) => {
+            users = users.filter(socket => socket.nickname.type != type && socket.nickname.name == name)
+        });
+
+        socket.on('isPreferencesConnected', () => {
+            for (const user of users) {
+                if (user.nickname.type == "P") {
+                    socket.emit('preferencesConnected', true)
+                    return
+                }
+            }
+            io.sockets.emit('preferencesConnected', false)
+        })
 
     });
 };

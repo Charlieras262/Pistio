@@ -5,6 +5,7 @@ import com.google.gson.reflect.TypeToken;
 import com.javier.pistio.modelos.Turno;
 import com.javier.pistio.utils.ProjectVariable;
 import com.jfoenix.controls.JFXListView;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -60,6 +61,8 @@ public class ColaboradorViewController implements Initializable {
         if(ProjectVariable.SERVICE.equals("Preferencias")){
             rootPane.getChildren().remove(prefList);
             AnchorPane.setTopAnchor(turnList, 70.0);
+        }else{
+            SOCKET.emit("isPreferencesConnected");
         }
 
         initTable();
@@ -75,6 +78,21 @@ public class ColaboradorViewController implements Initializable {
             for(Turno turno : a){
                 turns.add(new Label(turno.getType()+addZeros(turno.getCorrel())));
             }
+        });
+
+        SOCKET.on("preferencesConnected", args -> {
+            Platform.runLater(() -> {
+                boolean resp = ((boolean) args[0]);
+                if(resp){
+                    // Quitar Lista de Preferencias
+                    rootPane.getChildren().remove(prefList);
+                    AnchorPane.setTopAnchor(turnList, 70.0);
+                } else {
+                    // Poner lista de Preferencias
+                    rootPane.getChildren().add(prefList);
+                    AnchorPane.setTopAnchor(turnList, 220.0);
+                }
+            });
         });
     }
 

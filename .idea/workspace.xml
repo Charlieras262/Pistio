@@ -6,7 +6,12 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Vistas de Colaboradores, Eventos de Sockets&#10;&#10;Se agregó la vista para cada colaborador (colaborador_view.fxml), se agrego el evento newTurn para cada tipo de colaborador." />
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Vistas de Colaboradores, Eventos de Sockets&#10;&#10;Se agregó la vista para cada colaborador (colaborador_view.fxml), se agrego el evento newTurn para cada tipo de colaborador.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/websocket/socket.io.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/websocket/socket.io.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/javier/pistio/controllers/ColaboradorViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/javier/pistio/controllers/ColaboradorViewController.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -260,6 +265,10 @@
       <workItem from="1585405244153" duration="1279000" />
       <workItem from="1585613240775" duration="15754000" />
       <workItem from="1585697229552" duration="9406000" />
+      <workItem from="1585807072265" duration="17000" />
+      <workItem from="1586216053373" duration="3668000" />
+      <workItem from="1586297986907" duration="897000" />
+      <workItem from="1586307893295" duration="137000" />
     </task>
     <task id="LOCAL-00001" summary="Solucion al error de datos en tabla.&#10;&#10;Se agrego el metodo init en el socket para que sepuede llamar al principio del controlador Usuarios.">
       <created>1585251496181</created>
@@ -340,22 +349,22 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="389" y="106" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1585622995793" />
-    <state width="1323" height="179" key="GridCell.Tab.0.bottom" timestamp="1585706886839">
+    <state width="1323" height="179" key="GridCell.Tab.0.bottom" timestamp="1586299572390">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1585706886839" />
-    <state width="1323" height="179" key="GridCell.Tab.0.center" timestamp="1585706886839">
+    <state width="1323" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1586299572390" />
+    <state width="1323" height="179" key="GridCell.Tab.0.center" timestamp="1586299572390">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1585706886839" />
-    <state width="1323" height="179" key="GridCell.Tab.0.left" timestamp="1585706886839">
+    <state width="1323" height="179" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1586299572390" />
+    <state width="1323" height="179" key="GridCell.Tab.0.left" timestamp="1586299572390">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1585706886839" />
-    <state width="1323" height="179" key="GridCell.Tab.0.right" timestamp="1585706886839">
+    <state width="1323" height="179" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1586299572390" />
+    <state width="1323" height="179" key="GridCell.Tab.0.right" timestamp="1586299572390">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1585706886839" />
+    <state width="1323" height="179" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1586299572390" />
     <state x="163" y="0" key="SettingsEditor" timestamp="1585623016530">
       <screen x="0" y="0" width="1366" height="728" />
     </state>

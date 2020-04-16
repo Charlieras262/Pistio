@@ -2,8 +2,6 @@ const express = require('express');
 const morgan = require('morgan');
 const database = require('./database');
 
-let users = {};
-
 const app = express();
 require('./config/verify').createAdminUser();
 
