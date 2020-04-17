@@ -5,12 +5,34 @@
       <artifact name="Pistio:jar" />
     </artifacts-to-build>
   </component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Vistas de Colaboradores, Eventos de Sockets&#10;&#10;Se agregó la vista para cada colaborador (colaborador_view.fxml), se agrego el evento newTurn para cada tipo de colaborador.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/websocket/socket.io.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/websocket/socket.io.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/javier/pistio/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/javier/pistio/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/javier/pistio/controllers/ColaboradorViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/javier/pistio/controllers/ColaboradorViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/javier/pistio/controllers/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/javier/pistio/controllers/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/javier/pistio/utils/ProjectVariable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/javier/pistio/utils/ProjectVariable.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,9 +80,6 @@
     <ui_properties converted="true" />
     <breakpoint_rules converted="true" />
   </component>
-  <component name="FavoritesManager">
-    <favorites_list name="JavaFxApplication" />
-  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -95,7 +114,6 @@
   </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
@@ -112,13 +130,14 @@
     <property name="MemberChooser.showClasses" value="true" />
     <property name="MemberChooser.sorted" value="false" />
     <property name="OverrideImplement.combined" value="false" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="dynamic.classpath" value="false" />
     <property name="extract.method.default.visibility" value="private" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/com/javier/pistio/ui" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -130,6 +149,7 @@
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="recentsLimit" value="5" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -269,6 +289,9 @@
       <workItem from="1586216053373" duration="3668000" />
       <workItem from="1586297986907" duration="897000" />
       <workItem from="1586307893295" duration="137000" />
+      <workItem from="1587049057054" duration="197000" />
+      <workItem from="1587049330953" duration="796000" />
+      <workItem from="1587078003770" duration="6610000" />
     </task>
     <task id="LOCAL-00001" summary="Solucion al error de datos en tabla.&#10;&#10;Se agrego el metodo init en el socket para que sepuede llamar al principio del controlador Usuarios.">
       <created>1585251496181</created>
@@ -309,7 +332,18 @@
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="2" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="true" />
@@ -325,10 +359,11 @@
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="137" y="20" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1584637389956">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="160" y="25" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1587049376946">
+      <screen x="0" y="0" width="1600" height="900" />
     </state>
     <state x="137" y="20" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.728@0.0.1366.728" timestamp="1584637389956" />
+    <state x="160" y="25" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1600.900@0.0.1600.900" timestamp="1587049376946" />
     <state x="488" y="74" key="#com.intellij.ide.util.MemberChooser" timestamp="1585702306003">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -345,34 +380,45 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="0" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1585706881392" />
-    <state x="389" y="106" key="FileChooserDialogImpl" timestamp="1585622995793">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="456" y="131" key="FileChooserDialogImpl" timestamp="1587049436995">
+      <screen x="0" y="0" width="1600" height="900" />
     </state>
     <state x="389" y="106" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1585622995793" />
-    <state width="1323" height="179" key="GridCell.Tab.0.bottom" timestamp="1586299572390">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="456" y="131" key="FileChooserDialogImpl/0.0.1600.900@0.0.1600.900" timestamp="1587049436995" />
+    <state width="1554" height="210" key="GridCell.Tab.0.bottom" timestamp="1587084975584">
+      <screen x="0" y="0" width="1600" height="857" />
     </state>
     <state width="1323" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1586299572390" />
-    <state width="1323" height="179" key="GridCell.Tab.0.center" timestamp="1586299572390">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1554" height="210" key="GridCell.Tab.0.bottom/0.0.1600.857@0.0.1600.857" timestamp="1587084975584" />
+    <state width="1352" height="211" key="GridCell.Tab.0.bottom/0.0.1600.900@0.0.1600.900" timestamp="1587050363099" />
+    <state width="1554" height="210" key="GridCell.Tab.0.center" timestamp="1587084975582">
+      <screen x="0" y="0" width="1600" height="857" />
     </state>
     <state width="1323" height="179" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1586299572390" />
-    <state width="1323" height="179" key="GridCell.Tab.0.left" timestamp="1586299572390">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1554" height="210" key="GridCell.Tab.0.center/0.0.1600.857@0.0.1600.857" timestamp="1587084975582" />
+    <state width="1352" height="211" key="GridCell.Tab.0.center/0.0.1600.900@0.0.1600.900" timestamp="1587050363099" />
+    <state width="1554" height="210" key="GridCell.Tab.0.left" timestamp="1587084975582">
+      <screen x="0" y="0" width="1600" height="857" />
     </state>
     <state width="1323" height="179" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1586299572390" />
-    <state width="1323" height="179" key="GridCell.Tab.0.right" timestamp="1586299572390">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1554" height="210" key="GridCell.Tab.0.left/0.0.1600.857@0.0.1600.857" timestamp="1587084975582" />
+    <state width="1352" height="211" key="GridCell.Tab.0.left/0.0.1600.900@0.0.1600.900" timestamp="1587050363098" />
+    <state width="1554" height="210" key="GridCell.Tab.0.right" timestamp="1587084975583">
+      <screen x="0" y="0" width="1600" height="857" />
     </state>
     <state width="1323" height="179" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1586299572390" />
-    <state x="163" y="0" key="SettingsEditor" timestamp="1585623016530">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1554" height="210" key="GridCell.Tab.0.right/0.0.1600.857@0.0.1600.857" timestamp="1587084975583" />
+    <state width="1352" height="211" key="GridCell.Tab.0.right/0.0.1600.900@0.0.1600.900" timestamp="1587050363099" />
+    <state x="191" y="0" key="SettingsEditor" timestamp="1587049241553">
+      <screen x="0" y="0" width="1600" height="900" />
     </state>
     <state x="163" y="0" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1585623016530" />
-    <state x="344" y="0" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1585628818633">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="191" y="0" key="SettingsEditor/0.0.1600.900@0.0.1600.900" timestamp="1587049241553" />
+    <state x="403" y="0" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1587079650686">
+      <screen x="0" y="0" width="1600" height="857" />
     </state>
     <state x="344" y="0" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1366.728@0.0.1366.728" timestamp="1585628818633" />
+    <state x="403" y="0" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1600.857@0.0.1600.857" timestamp="1587079650686" />
     <state x="413" y="145" key="extract.method.dialog" timestamp="1585336730604">
       <screen x="0" y="0" width="1366" height="728" />
     </state>

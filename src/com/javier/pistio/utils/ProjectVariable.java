@@ -6,6 +6,8 @@ import io.socket.client.Socket;
 import java.net.URISyntaxException;
 
 public class ProjectVariable {
+
+    public static String type, username;
     public static String SERVICE = "View";
     public static Socket SOCKET;
 

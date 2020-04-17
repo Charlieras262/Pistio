@@ -26,7 +26,7 @@ import static com.javier.pistio.utils.Util.addZeros;
 
 public class ColaboradorViewController implements Initializable {
 
-    private ObservableList<Label> turns = FXCollections.observableArrayList();
+    private final ObservableList<Label> turns = FXCollections.observableArrayList();
 
     @FXML
     private StackPane root;
@@ -58,10 +58,10 @@ public class ColaboradorViewController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         title.setText(ProjectVariable.SERVICE);
-        if(ProjectVariable.SERVICE.equals("Preferencias")){
+        if (ProjectVariable.SERVICE.equals("Preferencias")) {
             rootPane.getChildren().remove(prefList);
             AnchorPane.setTopAnchor(turnList, 70.0);
-        }else{
+        } else {
             SOCKET.emit("isPreferencesConnected");
         }
 
@@ -70,24 +70,29 @@ public class ColaboradorViewController implements Initializable {
         String t = ProjectVariable.SERVICE.equals("Caja") ? "C" : ProjectVariable.SERVICE.equals("Atención al Cliente") ? "S" : ProjectVariable.SERVICE.equals("Créditos") ? "R" : ProjectVariable.SERVICE.equals("Gestor") ? "G" : "P";
         SOCKET.emit("init", t);
 
-        SOCKET.on("newTurn"+t, args -> {
-            Type type = new TypeToken<List<Turno>>() {}.getType();
+        SOCKET.on("newTurn" + t, args -> {
+            Type type = new TypeToken<List<Turno>>() {
+            }.getType();
             Gson gson = new Gson();
             ArrayList<Turno> a = gson.fromJson(args[0].toString(), type);
-            turns.clear();
-            for(Turno turno : a){
-                turns.add(new Label(turno.getType()+addZeros(turno.getCorrel())));
-            }
+            Platform.runLater(() -> {
+                turns.clear();
+                for (Turno turno : a) {
+                    turns.add(new Label(turno.getType() + addZeros(turno.getCorrel())));
+                }
+            });
+
         });
 
         SOCKET.on("preferencesConnected", args -> {
             Platform.runLater(() -> {
                 boolean resp = ((boolean) args[0]);
-                if(resp){
+                if (resp) {
                     // Quitar Lista de Preferencias
                     rootPane.getChildren().remove(prefList);
                     AnchorPane.setTopAnchor(turnList, 70.0);
                 } else {
+                    System.out.println("AGREGAR");
                     // Poner lista de Preferencias
                     rootPane.getChildren().add(prefList);
                     AnchorPane.setTopAnchor(turnList, 220.0);
@@ -96,7 +101,7 @@ public class ColaboradorViewController implements Initializable {
         });
     }
 
-    private void initTable(){
+    private void initTable() {
         turnList.setItems(turns);
     }
 }

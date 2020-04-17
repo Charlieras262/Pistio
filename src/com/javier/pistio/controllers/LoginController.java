@@ -1,6 +1,5 @@
 package com.javier.pistio.controllers;
 
-
 import com.javier.pistio.utils.ProjectVariable;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXPasswordField;
@@ -19,6 +18,9 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import static com.javier.pistio.utils.ProjectVariable.SOCKET;
+import static com.javier.pistio.utils.ProjectVariable.SERVICE;
+import static com.javier.pistio.utils.ProjectVariable.type;
+import static com.javier.pistio.utils.ProjectVariable.username;
 import static com.javier.pistio.utils.ProjectVariable.initSocket;
 import static com.javier.pistio.utils.Util.alert;
 
@@ -66,13 +68,14 @@ public class LoginController implements Initializable {
                         pass.clear();
                         try {
                             String url;
-                            switch (args[1].toString().charAt(0)){
+                            char type = args[1].toString().charAt(0);
+                            switch (type){
                                 case 'A': url = "../ui/admin_menu.fxml"; break;
                                 case 'G': url = "../ui/soporte_menu.fxml"; break;
-                                case 'C': ProjectVariable.SERVICE = "Caja"; url = "../ui/colaborador_view.fxml"; break;
-                                case 'S': ProjectVariable.SERVICE = "Atención al Cliente"; url = "../ui/colaborador_view.fxml"; break;
-                                case 'R': ProjectVariable.SERVICE = "Créditos"; url = "../ui/colaborador_view.fxml"; break;
-                                case 'P': ProjectVariable.SERVICE = "Preferencias"; url = "../ui/colaborador_view.fxml"; break;
+                                case 'C': setCurrentUser("Caja", args[3].toString(), String.valueOf(type)); url = "../ui/colaborador_view.fxml"; break;
+                                case 'S': setCurrentUser("Atención al Cliente", args[3].toString(), String.valueOf(type)); url = "../ui/colaborador_view.fxml"; break;
+                                case 'R': setCurrentUser("Créditos", args[3].toString(), String.valueOf(type)); url = "../ui/colaborador_view.fxml"; break;
+                                case 'P': setCurrentUser("Preferencias", args[3].toString(), String.valueOf(type)); url = "../ui/colaborador_view.fxml"; break;
                                 default: url = "../ui/login.fxml";
                             }
                             StackPane anchorPane = FXMLLoader.load(getClass().getResource(url));
@@ -102,5 +105,11 @@ public class LoginController implements Initializable {
         }else{
             dialog.close();
         }
+    }
+
+    private void setCurrentUser(String service, String name, String t){
+        SERVICE = service;
+        username = name;
+        type = t;
     }
 }

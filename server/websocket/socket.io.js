@@ -22,9 +22,9 @@ module.exports = (io) => {
                 if (pass != user.pass) {
                     socket.emit('logged', false, user.type, "Contraseña incorrecta.")
                 } else {
-                    socket.emit('logged', true, user.type, "Acceso Concedido.")
+                    socket.emit('logged', true, user.type, "Acceso Concedido.", user.usuario)
                     socket.nickname = {type: user.type, name: user.usuario};
-                    if(user.type == "P") io.sockets.emit('preferencesConnected', true)
+                    if(user.type == 'P') io.sockets.emit('preferencesConnected', true)
                     users.push(socket)
                 }
             }
@@ -64,19 +64,9 @@ module.exports = (io) => {
         });
 
         socket.on('logout', (type, name) => {
-            users = users.filter(socket => socket.nickname.type != type && socket.nickname.name == name)
+            users = users.filter(socket => socket.nickname.type != type && socket.nickname.name != name)
+            if(type == 'P')io.sockets.emit('preferencesConnected', false)
         });
-
-        socket.on('isPreferencesConnected', () => {
-            for (const user of users) {
-                if (user.nickname.type == "P") {
-                    socket.emit('preferencesConnected', true)
-                    return
-                }
-            }
-            io.sockets.emit('preferencesConnected', false)
-        })
-
     });
 };
 
