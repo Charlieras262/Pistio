@@ -45,10 +45,10 @@ public class TicketViewController implements Initializable {
     @FXML
     void generarTicket(MouseEvent event) {
         String type = (tipo.getValue().getText().equals("Caja") ? "C" : tipo.getValue().getText().equals("Atención al Cliente") ? "S" : "R");
-        type =  pref.getValue().getText().equals("Sin Preferencias") ? type : "P";
+        boolean isPref = !pref.getValue().getText().equals("Sin Preferencias");
         tipo.getSelectionModel().clearSelection();
         pref.getSelectionModel().clearSelection();
-        SOCKET.emit("createTransaction", type);
+        SOCKET.emit("createTransaction", type, isPref);
     }
 
     public void generatePDF(String fileName) {

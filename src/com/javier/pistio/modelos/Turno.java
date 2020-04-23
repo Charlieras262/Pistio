@@ -6,14 +6,16 @@ import javafx.beans.property.SimpleStringProperty;
 public class Turno {
     private String _id, type;
     private int correl;
+    private boolean pref;
 
     public Turno() {
     }
 
-    public Turno(String _id, String type, int correl) {
+    public Turno(String _id, String type, int correl, boolean pref) {
         this._id = _id;
         this.type = type;
         this.correl = correl;
+        this.pref = pref;
     }
 
     public String get_id() {
@@ -50,5 +52,13 @@ public class Turno {
 
     public void setCorrel(int correl) {
         this.correl = correl;
+    }
+
+    public boolean isPref() {
+        return pref;
+    }
+
+    public void setPref(boolean pref) {
+        this.pref = pref;
     }
 }

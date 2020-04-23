@@ -76,6 +76,7 @@ public class LoginController implements Initializable {
                                 case 'S': setCurrentUser("Atención al Cliente", args[3].toString(), String.valueOf(type)); url = "../ui/colaborador_view.fxml"; break;
                                 case 'R': setCurrentUser("Créditos", args[3].toString(), String.valueOf(type)); url = "../ui/colaborador_view.fxml"; break;
                                 case 'P': setCurrentUser("Preferencias", args[3].toString(), String.valueOf(type)); url = "../ui/colaborador_view.fxml"; break;
+                                case 'T': url = "../ui/turno_view.fxml"; break;
                                 default: url = "../ui/login.fxml";
                             }
                             StackPane anchorPane = FXMLLoader.load(getClass().getResource(url));

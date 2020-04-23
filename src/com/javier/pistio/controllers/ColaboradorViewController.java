@@ -27,6 +27,10 @@ import static com.javier.pistio.utils.Util.addZeros;
 public class ColaboradorViewController implements Initializable {
 
     private final ObservableList<Label> turns = FXCollections.observableArrayList();
+    private final ObservableList<Label> turnsP = FXCollections.observableArrayList();
+    private final ArrayList<Turno> turnos = new ArrayList<>();
+    private final ArrayList<Turno> turnosP = new ArrayList<>();
+    private Turno turno = new Turno();
 
     @FXML
     private StackPane root;
@@ -41,6 +45,18 @@ public class ColaboradorViewController implements Initializable {
     private JFXListView<Label> turnList, prefList;
 
     @FXML
+    void noPrefClicked(MouseEvent event) {
+        turno = turnos.get(turnList.getSelectionModel().getSelectedIndex());
+        prefList.getSelectionModel().clearSelection();
+    }
+
+    @FXML
+    void prefClicked(MouseEvent event) {
+        turno = turnosP.get(prefList.getSelectionModel().getSelectedIndex());
+        turnList.getSelectionModel().clearSelection();
+    }
+
+    @FXML
     void cancelar(MouseEvent event) {
 
     }
@@ -51,8 +67,20 @@ public class ColaboradorViewController implements Initializable {
     }
 
     @FXML
-    void next(MouseEvent event) {
+    void next(MouseEvent event) { // {_id, type: "C", correl: 1, pref: true}
+        String req = "{" +
+                "\"_id\": \"" + turno.get_id() + "\", " +
+                "\"type\": \"" + turno.getType() + "\", " +
+                "\"correl\": " + turno.getCorrel() + ", " +
+                "\"pref\": " + turno.isPref() + ", " +
+                "\"state\": " + "\"A\"" +
+                "}";
+        SOCKET.emit("atender", req);
+    }
 
+    @FXML
+    void llamar(MouseEvent event) {
+        SOCKET.emit("llamar", turno.getType(), ProjectVariable.username, turno.getType()+addZeros(turno.getCorrel()));
     }
 
     @Override
@@ -68,17 +96,36 @@ public class ColaboradorViewController implements Initializable {
         initTable();
 
         String t = ProjectVariable.SERVICE.equals("Caja") ? "C" : ProjectVariable.SERVICE.equals("Atención al Cliente") ? "S" : ProjectVariable.SERVICE.equals("Créditos") ? "R" : ProjectVariable.SERVICE.equals("Gestor") ? "G" : "P";
-        SOCKET.emit("init", t);
+        SOCKET.emit("init", t, false);
+        SOCKET.emit("init", t, true);
 
         SOCKET.on("newTurn" + t, args -> {
             Type type = new TypeToken<List<Turno>>() {
             }.getType();
             Gson gson = new Gson();
             ArrayList<Turno> a = gson.fromJson(args[0].toString(), type);
+            turnos.clear();
+            turnos.addAll(a);
             Platform.runLater(() -> {
                 turns.clear();
                 for (Turno turno : a) {
                     turns.add(new Label(turno.getType() + addZeros(turno.getCorrel())));
+                }
+            });
+
+        });
+
+        SOCKET.on("newTurnP", args -> {
+            Type type = new TypeToken<List<Turno>>() {
+            }.getType();
+            Gson gson = new Gson();
+            ArrayList<Turno> a = gson.fromJson(args[0].toString(), type);
+            turnosP.clear();
+            turnosP.addAll(a);
+            Platform.runLater(() -> {
+                turnsP.clear();
+                for (Turno turno : a) {
+                    turnsP.add(new Label(turno.getType() + addZeros(turno.getCorrel())));
                 }
             });
 
@@ -92,7 +139,6 @@ public class ColaboradorViewController implements Initializable {
                     rootPane.getChildren().remove(prefList);
                     AnchorPane.setTopAnchor(turnList, 70.0);
                 } else {
-                    System.out.println("AGREGAR");
                     // Poner lista de Preferencias
                     rootPane.getChildren().add(prefList);
                     AnchorPane.setTopAnchor(turnList, 220.0);
@@ -103,5 +149,6 @@ public class ColaboradorViewController implements Initializable {
 
     private void initTable() {
         turnList.setItems(turns);
+        prefList.setItems(turnsP);
     }
 }
