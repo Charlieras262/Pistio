@@ -12,6 +12,10 @@ module.exports = (io) => {
 
         socket.on('init', (type, pref) => {
             getTruns(io, type, pref)
+            const user = users.find(user => user.nickname.pref == true)
+            if(user != undefined && pref == false){
+                socket.emit('preferencesConnected', true, user.nickname.type)
+            }
         });
 
         socket.on('login', async (username, pass) => {
@@ -22,9 +26,9 @@ module.exports = (io) => {
                 if (pass != user.pass) {
                     socket.emit('logged', false, user.type, "Contraseña incorrecta.")
                 } else {
-                    socket.emit('logged', true, user.type, "Acceso Concedido.", user.usuario)
-                    socket.nickname = { type: user.type, name: user.usuario };
-                    if (user.type == 'P') io.sockets.emit('preferencesConnected', true)
+                    socket.emit('logged', true, user.type, "Acceso Concedido.", user.usuario, user.pref)
+                    socket.nickname = { type: user.type, name: user.usuario, pref: user.pref};
+                    if(user.pref) io.sockets.emit('preferencesConnected', true, user.type)
                     users.push(socket)
                 }
             }
@@ -39,6 +43,7 @@ module.exports = (io) => {
 
         socket.on('modificarUsuario', async user => {
             const userObj = JSON.parse(user);
+            console.log(userObj)
             await User.findByIdAndUpdate(userObj._id, userObj);
             const supportUsers = await User.find({ type: { $ne: 'A' } });
             io.sockets.emit('users', supportUsers)
@@ -51,27 +56,29 @@ module.exports = (io) => {
         });
 
         socket.on('newClient', async (client) => {
-            setTimeout(() => socket.emit('alert', 'Tiempo Expirado.'), 1 * 60000);
+            setTimeout(() => socket.emit('alert', 'Te quedan 5 minutos.'), 10 * 60000);
+            setTimeout(() => socket.emit('alert', 'Te quedan 2 minutos.'), 13 * 60000);
+            setTimeout(() => socket.emit('alert', 'Te queda 1 minuto. Si llegas a los 15 minutos afectaras tu TMO.'), 14 * 60000);
+            setTimeout(() => socket.emit('alert', 'Tiempo Expirado. Cliente guardado con exeso de tiempo.'), 15 * 60000);
         });
 
         socket.on('createTransaction', async (type, pref) => {
             const correl = await Turn.find({ type }).countDocuments() + 1;
-            const turn = new Turn({ type, correl, pref, state: "E" }); //E = Esperando, A: Atendido, X: Cancelado
+            const turn = new Turn({ type, correl, pref, state: "E" }); // E = Esperando, G: Atendiendo || X: Cancelado, A: Atendido, AE: Atendido Exeso
             await turn.save();
             socket.emit('newTransaction', `${type}${addZero(correl)}`);
             console.log(`${type}${addZero(correl)}`);
             getTruns(io, type, pref)
         });
 
-        socket.on('logout', (type, name) => {
+        socket.on('logout', (type, name, isPreference) => {
             users = users.filter(socket => socket.nickname.type != type && socket.nickname.name != name)
-            if (type == 'P') io.sockets.emit('preferencesConnected', false)
+            if(isPreference) io.sockets.emit('preferencesConnected', false, type)
         });
 
         socket.on('atender', async req => { // {_id, type: "C", correl: 1, pref: true}
             const turn = JSON.parse(req)
             await Turn.findByIdAndUpdate(turn._id, new Turn(turn))
-            getTruns(io, turn.type, turn.pref)
         })
 
         socket.on('llamar', (type, username, codigo) => { // {_id, type: "C", correl: 1, pref: true}
@@ -83,11 +90,9 @@ module.exports = (io) => {
 };
 
 const getTruns = async (io, type, pref) => {
-    const query = { type, pref, state: "E" };
-    const turns = await Turn.find(query);
-    const t = pref ? "P" : type;
+    const turns = await Turn.find({ type, pref, state: "E" });
     getAllTruns(io)
-    io.sockets.emit(`newTurn${t}`, turns)
+    io.sockets.emit(`newTurn${type}`, turns, pref)
 };
 
 const getAllTruns = async (io) => {

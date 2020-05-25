@@ -48,14 +48,19 @@ public class UsuariosController implements Initializable {
     private TableView<Soporte> dataTable;
 
     @FXML
-    private TableColumn<Soporte, String> cId, cNombre, cPass, cApellido, cUsuario, cType;
+    private TableColumn<Soporte, String> cId, cNombre, cPass, cApellido, cUsuario, cType, cPrefs;
 
     @FXML private JFXButton add, nuevo, del, mod;
 
     @FXML
     private JFXComboBox<Label> type;
 
+    @FXML
+    private JFXToggleButton prefs;
+
     private JFXDialog dialog;
+
+    private boolean preferencias = false;
 
     @FXML
     void back(MouseEvent event) {
@@ -75,9 +80,10 @@ public class UsuariosController implements Initializable {
         Soporte soporte = newSoporte();
         soporte.setType(type.getValue().getText().equals("Caja") ? "C" : type.getValue().getText().equals("Atención al Cliente") ? "S" : type.getValue().getText().equals("Créditos") ? "R" : type.getValue().getText().equals("Gestor") ? "G" : "P");
         limpiar();
-        SOCKET.emit("createUser", soporte);
         add.setDisable(true);
         nuevo.setDisable(false);
+        toggleDisableFields(false);
+        SOCKET.emit("createUser", soporte);
     }
 
     @FXML
@@ -87,6 +93,7 @@ public class UsuariosController implements Initializable {
         limpiar();
         add.setDisable(true);
         nuevo.setDisable(false);
+        toggleDisableFields(false);
     }
 
     @FXML
@@ -94,12 +101,13 @@ public class UsuariosController implements Initializable {
         dialog = alert(root, rootPane,"Modificando Usuario", null);
         Soporte soporte = newSoporte();
         soporte.setId(getUsuarioSeleccionado().getId());
-        soporte.setType(type.getValue().getText().equals("Caja") ? "C" : type.getValue().getText().equals("Atención al Cliente") ? "S" : type.getValue().getText().equals("Créditos") ? "R" : type.getValue().getText().equals("Gestor") ? "G" : "P");
+        soporte.setType(type.getValue().getText().equals("Caja") ? "C" : type.getValue().getText().equals("Atención al Cliente") ? "S" : type.getValue().getText().equals("Créditos") ? "R" : type.getValue().getText().equals("Gestor") ? "G" : "T");
 
         SOCKET.emit("modificarUsuario", soporte.toJSON());
         limpiar();
         add.setDisable(true);
         nuevo.setDisable(false);
+        toggleDisableFields(false);
     }
 
     @FXML
@@ -117,12 +125,13 @@ public class UsuariosController implements Initializable {
         mod.setDisable(true);
         del.setDisable(true);
         toggleDisableFields(true);
+        prefs.setDisable(false);
         type.getSelectionModel().clearSelection();
         dataTable.getSelectionModel().clearSelection();
     }
 
     private Soporte newSoporte(){
-        return new Soporte(nombre.getText(), apellido.getText(), usuario.getText(), pass.getText());
+        return new Soporte(nombre.getText(), apellido.getText(), usuario.getText(), pass.getText(), prefs.isSelected());
     }
 
     public Soporte getUsuarioSeleccionado() {
@@ -142,6 +151,7 @@ public class UsuariosController implements Initializable {
         cUsuario.setCellValueFactory(param -> param.getValue().usuarioProperty());
         cPass.setCellValueFactory(param -> param.getValue().passProperty());
         cType.setCellValueFactory(param -> param.getValue().typeProperty());
+        cPrefs.setCellValueFactory(param -> param.getValue().prefsProperty());
 
         dataTable.setItems(usuarios);
 
@@ -162,11 +172,13 @@ public class UsuariosController implements Initializable {
             usuario.setText(soporte.getUsuario());
             pass.setText(soporte.getPass());
             type.getSelectionModel().select(soporte.getType().equals("C") ? 0 : soporte.getType().equals("S") ? 1 : soporte.getType().equals("R") ? 2 : soporte.getType().equals("G") ? 3 : 4);
+            prefs.setSelected(soporte.isPref());
 
             // Pongo los botones en su estado correspondiente
             mod.setDisable(false);
             del.setDisable(false);
             add.setDisable(true);
+            prefs.setDisable(false);
         }
     }
 
@@ -194,7 +206,7 @@ public class UsuariosController implements Initializable {
                 if(dialog != null) dialog.close();
             });
         });
-        ObservableList<Label> tipos = FXCollections.observableArrayList(createLable("Caja"), createLable("Atención al Cliente"), createLable("Créditos"), createLable("Gestor"), createLable("Prefencias"));
+        ObservableList<Label> tipos = FXCollections.observableArrayList(createLable("Caja"), createLable("Atención al Cliente"), createLable("Créditos"), createLable("Gestor"), createLable("Turno"));
         type.setItems(tipos);
         inicializarTabla();
     }

@@ -8,6 +8,7 @@ import java.net.URISyntaxException;
 public class ProjectVariable {
 
     public static String type, username;
+    public static boolean pref = false;
     public static String SERVICE = "View";
     public static Socket SOCKET;
 

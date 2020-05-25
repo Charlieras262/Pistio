@@ -1,19 +1,22 @@
 package com.javier.pistio.modelos;
 
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 public class Soporte {
     private String _id, nombre, apellido, usuario, pass, type;
+    private boolean pref;
 
     public Soporte() {
     }
 
-    public Soporte(String nombre, String apellido, String usuario, String pass) {
+    public Soporte(String nombre, String apellido, String usuario, String pass, boolean pref) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.usuario = usuario;
         this.pass = pass;
         this.type = "S";
+        this.pref = pref;
     }
 
     public String getId() {
@@ -81,11 +84,24 @@ public class Soporte {
     }
 
     public SimpleStringProperty typeProperty(){
-        return new SimpleStringProperty(type.equals("C") ? "Caja" : type.equals("S") ? "Atención al Cliente" : type.equals("R") ? "Créditos" : type.equals("G") ? "Gestor" : "Preferencias");
+        return new SimpleStringProperty(type.equals("C") ? "Caja" : type.equals("S") ? "Atención al Cliente" : type.equals("R") ? "Créditos" : type.equals("G") ? "Gestor" : "Turno");
     }
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public boolean isPref() {
+        return pref;
+    }
+
+    public void setPref(boolean pref) {
+        this.pref = pref;
+    }
+
+    public SimpleStringProperty prefsProperty(){
+        String prefStr = pref ? "Preferencia" : "Sin Preferencia";
+        return new SimpleStringProperty(prefStr);
     }
 
     @Override
@@ -106,7 +122,8 @@ public class Soporte {
                 "\"apellido\" : \"" + apellido + "\", " +
                 "\"usuario\" : \"" + usuario + "\", " +
                 "\"pass\" : \"" + pass + "\", " +
-                "\"type\" : \""+ type +"\"" +
+                "\"type\" : \""+ type +"\", " +
+                "\"pref\" : "+ pref +"" +
                 '}';
     }
 }

@@ -1,10 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
-<StackPane fx:id="root" prefHeight="600.0" prefWidth="800.0" stylesheets="@../media/style.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.javier.pistio.controllers.UsuariosController">
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXToggleButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<StackPane fx:id="root" prefHeight="600.0" prefWidth="800.0" stylesheets="@../media/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.javier.pistio.controllers.UsuariosController">
    <children>
       <AnchorPane fx:id="rootPane" prefHeight="400.0" prefWidth="600.0" styleClass="content">
          <children>
@@ -21,7 +30,7 @@
             <JFXTextField fx:id="apellido" disable="true" focusColor="#0093ff" labelFloat="true" layoutX="226.0" layoutY="118.0" maxHeight="40.0" maxWidth="270.0" prefHeight="40.0" prefWidth="135.0" promptText="Apellido" style="color: #ffffff;" styleClass="text-field" />
             <JFXTextField fx:id="usuario" disable="true" focusColor="#0093ff" labelFloat="true" layoutX="440.0" layoutY="118.0" maxHeight="40.0" maxWidth="270.0" prefHeight="40.0" prefWidth="270.0" promptText="Usuario" style="color: #ffffff;" styleClass="text-field" />
             <JFXPasswordField fx:id="pass" disable="true" focusColor="#0093ff" labelFloat="true" layoutX="91.0" layoutY="200.0" maxHeight="40.0" maxWidth="270.0" prefHeight="40.0" prefWidth="270.0" promptText="Contraseña" />
-            <JFXComboBox fx:id="type" disable="true" focusColor="#0093ff" layoutX="440.0" layoutY="200.0" prefHeight="40.0" prefWidth="270.0" promptText="Tipo de Usuario" />
+            <JFXComboBox fx:id="type" disable="true" focusColor="#0093ff" layoutX="440.0" layoutY="200.0" prefHeight="40.0" prefWidth="135.0" promptText="Tipo de Usuario" />
             <JFXButton fx:id="add" buttonType="RAISED" disable="true" layoutX="38.0" layoutY="280.0" maxHeight="40.0" maxWidth="270.0" onAction="#crear" prefHeight="40.0" prefWidth="170.0" ripplerFill="#737373" styleClass="btn" text="Añadir" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
@@ -35,11 +44,12 @@
             <TableView fx:id="dataTable" layoutX="18.0" layoutY="338.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.leftAnchor="18.0" AnchorPane.rightAnchor="18.0">
               <columns>
                   <TableColumn fx:id="cId" minWidth="0.0" prefWidth="0.0" resizable="false" text="ID" />
-                <TableColumn fx:id="cNombre" prefWidth="152.6" text="Nombre" />
-                <TableColumn fx:id="cApellido" prefWidth="152.6" text="Apellido" />
-                  <TableColumn fx:id="cUsuario" prefWidth="152.6" text="Usuario" />
-                  <TableColumn fx:id="cPass" prefWidth="152.6" text="Contraseña" />
-                  <TableColumn fx:id="cType" prefWidth="152.6" text="Tipo" />
+                <TableColumn fx:id="cNombre" prefWidth="152.6" resizable="false" text="Nombre" />
+                <TableColumn fx:id="cApellido" prefWidth="152.6" resizable="false" text="Apellido" />
+                  <TableColumn fx:id="cUsuario" prefWidth="152.6" resizable="false" text="Usuario" />
+                  <TableColumn fx:id="cPass" prefWidth="113.0" resizable="false" text="Contraseña" />
+                  <TableColumn fx:id="cType" prefWidth="100.0" resizable="false" text="Tipo" />
+                  <TableColumn fx:id="cPrefs" prefWidth="93.0" resizable="false" text="Prefs" />
               </columns>
             </TableView>
             <AnchorPane layoutX="22.0" layoutY="555.0" onMouseClicked="#back" prefHeight="24.0" prefWidth="24.0" style="-fx-background-color: #0000;" styleClass="btn">
@@ -59,6 +69,7 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </JFXButton>
+            <JFXToggleButton fx:id="prefs" disable="true" layoutX="581.0" layoutY="191.0" text="Preferencia" toggleColor="#0093ff" />
          </children>
       </AnchorPane>
    </children>

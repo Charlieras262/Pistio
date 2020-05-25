@@ -22,7 +22,9 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import static com.javier.pistio.utils.ProjectVariable.SOCKET;
+import static com.javier.pistio.utils.ProjectVariable.type;
 import static com.javier.pistio.utils.Util.addZeros;
+import static com.javier.pistio.utils.Util.alert;
 
 public class ColaboradorViewController implements Initializable {
 
@@ -58,16 +60,19 @@ public class ColaboradorViewController implements Initializable {
 
     @FXML
     void cancelar(MouseEvent event) {
-
+        String req = "{" +
+                "\"_id\": \"" + turno.get_id() + "\", " +
+                "\"type\": \"" + turno.getType() + "\", " +
+                "\"correl\": " + turno.getCorrel() + ", " +
+                "\"pref\": " + turno.isPref() + ", " +
+                "\"state\": " + "\"X\"" +
+                "}";
+        SOCKET.emit("atender", req);
+        updateList();
     }
 
     @FXML
     void finalizar(MouseEvent event) {
-
-    }
-
-    @FXML
-    void next(MouseEvent event) { // {_id, type: "C", correl: 1, pref: true}
         String req = "{" +
                 "\"_id\": \"" + turno.get_id() + "\", " +
                 "\"type\": \"" + turno.getType() + "\", " +
@@ -76,75 +81,102 @@ public class ColaboradorViewController implements Initializable {
                 "\"state\": " + "\"A\"" +
                 "}";
         SOCKET.emit("atender", req);
+        updateList();
+    }
+
+    @FXML
+    void atender(MouseEvent event) { // {_id, type: "C", correl: 1, pref: true}
+        String req = "{" +
+                "\"_id\": \"" + turno.get_id() + "\", " +
+                "\"type\": \"" + turno.getType() + "\", " +
+                "\"correl\": " + turno.getCorrel() + ", " +
+                "\"pref\": " + turno.isPref() + ", " +
+                "\"state\": " + "\"G\"" +
+                "}";
+        SOCKET.emit("atender", req);
+        SOCKET.emit("newClient");
+        updateList();
     }
 
     @FXML
     void llamar(MouseEvent event) {
-        SOCKET.emit("llamar", turno.getType(), ProjectVariable.username, turno.getType()+addZeros(turno.getCorrel()));
+        SOCKET.emit("llamar", turno.getType(), ProjectVariable.username, turno.getType() + addZeros(turno.getCorrel()));
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         title.setText(ProjectVariable.SERVICE);
-        if (ProjectVariable.SERVICE.equals("Preferencias")) {
-            rootPane.getChildren().remove(prefList);
-            AnchorPane.setTopAnchor(turnList, 70.0);
+        if (ProjectVariable.pref) {
+            rootPane.getChildren().remove(turnList);
+            AnchorPane.setBottomAnchor(prefList, 0.0);
         } else {
             SOCKET.emit("isPreferencesConnected");
         }
 
         initTable();
 
-        String t = ProjectVariable.SERVICE.equals("Caja") ? "C" : ProjectVariable.SERVICE.equals("Atención al Cliente") ? "S" : ProjectVariable.SERVICE.equals("Créditos") ? "R" : ProjectVariable.SERVICE.equals("Gestor") ? "G" : "P";
-        SOCKET.emit("init", t, false);
-        SOCKET.emit("init", t, true);
+        updateList();
 
-        SOCKET.on("newTurn" + t, args -> {
+        SOCKET.on("newTurn" + type, args -> {
             Type type = new TypeToken<List<Turno>>() {
             }.getType();
             Gson gson = new Gson();
-            ArrayList<Turno> a = gson.fromJson(args[0].toString(), type);
-            turnos.clear();
-            turnos.addAll(a);
-            Platform.runLater(() -> {
-                turns.clear();
-                for (Turno turno : a) {
-                    turns.add(new Label(turno.getType() + addZeros(turno.getCorrel())));
-                }
-            });
-
-        });
-
-        SOCKET.on("newTurnP", args -> {
-            Type type = new TypeToken<List<Turno>>() {
-            }.getType();
-            Gson gson = new Gson();
-            ArrayList<Turno> a = gson.fromJson(args[0].toString(), type);
-            turnosP.clear();
-            turnosP.addAll(a);
-            Platform.runLater(() -> {
-                turnsP.clear();
-                for (Turno turno : a) {
-                    turnsP.add(new Label(turno.getType() + addZeros(turno.getCorrel())));
-                }
-            });
-
+            ArrayList<Turno> list = gson.fromJson(args[0].toString(), type);
+            updateTurns((boolean) args[1], list);
         });
 
         SOCKET.on("preferencesConnected", args -> {
             Platform.runLater(() -> {
-                boolean resp = ((boolean) args[0]);
-                if (resp) {
-                    // Quitar Lista de Preferencias
-                    rootPane.getChildren().remove(prefList);
-                    AnchorPane.setTopAnchor(turnList, 70.0);
-                } else {
-                    // Poner lista de Preferencias
-                    rootPane.getChildren().add(prefList);
-                    AnchorPane.setTopAnchor(turnList, 220.0);
-                }
+                System.out.println(args[0]);
+                if (args[1].toString().equals(type))
+                    if (((boolean) args[0])) {
+                        // Quitar Lista de Preferencias
+                        rootPane.getChildren().remove(prefList);
+                        AnchorPane.setTopAnchor(turnList, 70.0);
+                        System.out.println("Ocultar");
+                    } else {
+                        // Poner lista de Preferencias
+                        rootPane.getChildren().add(prefList);
+                        AnchorPane.setTopAnchor(turnList, 220.0);
+                        System.out.println("Mostrar");
+                    }
+
             });
         });
+
+        SOCKET.on("alert", args -> {
+            Platform.runLater(() -> {
+                alert(root, rootPane, "Alert de Tiempo", args[0].toString());
+            });
+        });
+    }
+
+    private void updateTurns(boolean isPref, ArrayList<Turno> list) {
+        System.out.println(isPref);
+        if (isPref) {
+            turnosP.clear();
+            turnosP.addAll(list);
+            Platform.runLater(() -> {
+                turnsP.clear();
+                for (Turno turno : list) {
+                    turnsP.add(new Label(turno.getType() + addZeros(turno.getCorrel())));
+                }
+            });
+        } else {
+            turnos.clear();
+            turnos.addAll(list);
+            Platform.runLater(() -> {
+                turns.clear();
+                for (Turno turno : list) {
+                    turns.add(new Label(turno.getType() + addZeros(turno.getCorrel())));
+                }
+            });
+        }
+    }
+
+    private void updateList() {
+        SOCKET.emit("init", type, ProjectVariable.pref);
+        if (!ProjectVariable.pref) SOCKET.emit("init", type, true);
     }
 
     private void initTable() {

@@ -21,6 +21,7 @@ import static com.javier.pistio.utils.ProjectVariable.SOCKET;
 import static com.javier.pistio.utils.ProjectVariable.SERVICE;
 import static com.javier.pistio.utils.ProjectVariable.type;
 import static com.javier.pistio.utils.ProjectVariable.username;
+import static com.javier.pistio.utils.ProjectVariable.pref;
 import static com.javier.pistio.utils.ProjectVariable.initSocket;
 import static com.javier.pistio.utils.Util.alert;
 
@@ -72,10 +73,9 @@ public class LoginController implements Initializable {
                             switch (type){
                                 case 'A': url = "../ui/admin_menu.fxml"; break;
                                 case 'G': url = "../ui/soporte_menu.fxml"; break;
-                                case 'C': setCurrentUser("Caja", args[3].toString(), String.valueOf(type)); url = "../ui/colaborador_view.fxml"; break;
-                                case 'S': setCurrentUser("Atención al Cliente", args[3].toString(), String.valueOf(type)); url = "../ui/colaborador_view.fxml"; break;
-                                case 'R': setCurrentUser("Créditos", args[3].toString(), String.valueOf(type)); url = "../ui/colaborador_view.fxml"; break;
-                                case 'P': setCurrentUser("Preferencias", args[3].toString(), String.valueOf(type)); url = "../ui/colaborador_view.fxml"; break;
+                                case 'C': setCurrentUser("Caja", args[3].toString(), String.valueOf(type), (boolean) args[4]); url = "../ui/colaborador_view.fxml"; break;
+                                case 'S': setCurrentUser("Atención al Cliente", args[3].toString(), String.valueOf(type), (boolean) args[4]); url = "../ui/colaborador_view.fxml"; break;
+                                case 'R': setCurrentUser("Créditos", args[3].toString(), String.valueOf(type), (boolean) args[4]); url = "../ui/colaborador_view.fxml"; break;
                                 case 'T': url = "../ui/turno_view.fxml"; break;
                                 default: url = "../ui/login.fxml";
                             }
@@ -108,9 +108,11 @@ public class LoginController implements Initializable {
         }
     }
 
-    private void setCurrentUser(String service, String name, String t){
-        SERVICE = service;
+    private void setCurrentUser(String service, String name, String t, boolean p){
+        String prefStr = p ? " de Preferencias" : "";
+        SERVICE = service + prefStr;
         username = name;
         type = t;
+        pref = p;
     }
 }

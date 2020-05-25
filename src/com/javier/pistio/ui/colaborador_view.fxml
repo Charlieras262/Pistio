@@ -20,7 +20,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <JFXButton buttonType="RAISED" layoutX="257.0" layoutY="315.0" maxHeight="40.0" maxWidth="270.0" onMouseClicked="#next" prefHeight="40.0" prefWidth="128.0" ripplerFill="#737373" styleClass="btn" text="Atender" textFill="WHITE">
+            <JFXButton buttonType="RAISED" layoutX="428.0" layoutY="260.0" maxHeight="40.0" maxWidth="270.0" onMouseClicked="#atender" prefHeight="40.0" prefWidth="128.0" ripplerFill="#737373" styleClass="btn" text="Atender" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
@@ -37,7 +37,7 @@
             </JFXButton>
             <JFXListView fx:id="turnList" layoutY="70.0" onMouseClicked="#noPrefClicked" prefHeight="531.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="220.0" />
             <JFXListView fx:id="prefList" onMouseClicked="#prefClicked" prefHeight="150.0" AnchorPane.topAnchor="70.0" />
-            <JFXButton buttonType="RAISED" layoutX="428.0" layoutY="260.0" maxHeight="40.0" maxWidth="270.0" onMouseClicked="#llamar" prefHeight="40.0" prefWidth="128.0" ripplerFill="#737373" styleClass="btn" text="Llamar" textFill="WHITE">
+            <JFXButton buttonType="RAISED" layoutX="252.0" layoutY="315.0" maxHeight="40.0" maxWidth="270.0" onMouseClicked="#llamar" prefHeight="40.0" prefWidth="128.0" ripplerFill="#737373" styleClass="btn" text="Llamar" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>

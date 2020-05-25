@@ -7,6 +7,7 @@ const UserSchema = new Schema({
     apellido: { type: String, required: true },
     usuario: { type: String, required: true, unique: true },
     pass: { type: String, required: true },
+    pref: { type: Boolean, required: true, default: false},
     type: { type: String, required: true, default: 'S'}
 });
 
