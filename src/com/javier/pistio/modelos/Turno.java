@@ -4,7 +4,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 public class Turno {
-    private String _id, type;
+    private String _id, type, state;
     private int correl;
     private boolean pref;
 
@@ -60,5 +60,13 @@ public class Turno {
 
     public void setPref(boolean pref) {
         this.pref = pref;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
     }
 }

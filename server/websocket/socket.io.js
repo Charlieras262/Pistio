@@ -81,11 +81,20 @@ module.exports = (io) => {
             await Turn.findByIdAndUpdate(turn._id, new Turn(turn))
         })
 
+        socket.on('getReportData', async () => {
+            const turns = await Turn.find()
+            socket.emit('reportData', turns)
+        });
+
         socket.on('llamar', (type, username, codigo) => { // {_id, type: "C", correl: 1, pref: true}
             const name = getTableName(type, username)
             console.log("Ticket Numero", codigo, name)
             io.sockets.emit("llamarTicket", codigo, name)
         })
+
+        socket.on('getReportData', () => {
+            
+        });
     });
 };
 
