@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<StackPane fx:id="root" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.javier.pistio.controllers.AutoModeGnrController">
+    <children>
+        <AnchorPane fx:id="rootPane" prefHeight="600.0" prefWidth="800.0" styleClass="content" stylesheets="@../media/style.css">
+            <children>
+                <AnchorPane prefHeight="70.0" prefWidth="200.0" styleClass="title" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" styleClass="text" text="Generando Ticket" wrapText="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="18.0">
+                            <font>
+                                <Font name="System Bold" size="24.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </AnchorPane>
+                <ImageView fitHeight="320.0" fitWidth="320.0" layoutX="240.0" layoutY="140.0" pickOnBounds="true" preserveRatio="true" styleClass="btn">
+                    <image>
+                        <Image url="@../media/print.png" />
+                    </image>
+                </ImageView>
+            <AnchorPane layoutX="6.0" layoutY="530.0" prefHeight="70.0" prefWidth="200.0" styleClass="title" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" styleClass="text" text="Por favor, Espere." wrapText="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="18.0">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            </children>
+        </AnchorPane>
+    </children>
+</StackPane>

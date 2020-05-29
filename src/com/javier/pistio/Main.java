@@ -20,6 +20,7 @@ import static com.javier.pistio.utils.ProjectVariable.*;
 public class Main extends Application {
 
     private Stage stage;
+
     private final EventHandler<WindowEvent> confirmCloseEventHandler = event -> {
         Alert closeConfirmation = new Alert(
                 Alert.AlertType.CONFIRMATION,

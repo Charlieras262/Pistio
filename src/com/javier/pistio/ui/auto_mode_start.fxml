@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<StackPane fx:id="root" stylesheets="@../media/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.javier.pistio.controllers.AutoModeController">
+    <children>
+        <BorderPane prefHeight="600.0" prefWidth="800.0" styleClass="content">
+            <center>
+                <ImageView fitHeight="355.0" fitWidth="414.0" onMouseClicked="#goToTransactionType" pickOnBounds="true" preserveRatio="true" styleClass="btn" BorderPane.alignment="CENTER">
+                    <image>
+                        <Image url="@../media/logo.jpeg" />
+                    </image>
+                </ImageView>
+            </center>
+            <bottom>
+                <AnchorPane prefHeight="70.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+            </bottom>
+         <top>
+            <AnchorPane prefHeight="70.0" prefWidth="200.0" styleClass="title" BorderPane.alignment="CENTER">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" styleClass="text" text="Bienvenido a Banco Pistio" wrapText="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="18.0">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </top>
+        </BorderPane>
+    </children>
+</StackPane>

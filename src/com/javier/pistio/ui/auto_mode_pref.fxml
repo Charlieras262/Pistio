@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<StackPane fx:id="root" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.javier.pistio.controllers.AutoModePrefController">
+    <children>
+        <AnchorPane fx:id="rootPane" prefHeight="600.0" prefWidth="800.0" styleClass="content" stylesheets="@../media/style.css">
+            <children>
+                <AnchorPane prefHeight="70.0" prefWidth="200.0" styleClass="title" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" styleClass="text" text="Preferencias" wrapText="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="18.0">
+                            <font>
+                                <Font name="System Bold" size="24.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </AnchorPane>
+                <AnchorPane layoutX="390.0" layoutY="491.0" onMouseClicked="#next" rotate="180.0" style="-fx-background-color: #0000;" styleClass="btn" AnchorPane.leftAnchor="390.0" AnchorPane.rightAnchor="381.0">
+                    <children>
+                        <Pane layoutX="5.0" layoutY="8.0" prefHeight="4.0" prefWidth="24.0" styleClass="back" />
+                        <Pane layoutY="14.0" prefHeight="4.0" prefWidth="20.0" style="-fx-rotate: 45;" styleClass="back" />
+                        <Pane layoutY="2.0" prefHeight="4.0" prefWidth="20.0" style="-fx-rotate: -45;" styleClass="back" />
+                    </children>
+                </AnchorPane>
+                <JFXComboBox fx:id="pref" focusColor="#0093ff" labelFloat="true" layoutX="269.0" layoutY="409.0" prefHeight="40.0" prefWidth="270.0" promptText="Seleccione el tipo de transacción" />
+                <ImageView fitHeight="250.0" fitWidth="250.0" layoutX="279.0" layoutY="114.0" pickOnBounds="true" preserveRatio="true" styleClass="btn">
+                    <image>
+                        <Image url="@../media/preferences.png" />
+                    </image>
+                </ImageView>
+            </children>
+        </AnchorPane>
+    </children>
+</StackPane>

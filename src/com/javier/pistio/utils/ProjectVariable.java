@@ -14,7 +14,7 @@ public class ProjectVariable {
 
     public static void initSocket(){
         try {
-            SOCKET = IO.socket("http://localhost:8080");
+            SOCKET = IO.socket("https://pistioserver.herokuapp.com");
             SOCKET.on(Socket.EVENT_CONNECT, args -> {
                 SOCKET.emit("connected", ProjectVariable.class.hashCode());
             });

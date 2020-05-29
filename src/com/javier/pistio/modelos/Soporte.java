@@ -1,6 +1,5 @@
 package com.javier.pistio.modelos;
 
-import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 public class Soporte {
@@ -23,72 +22,72 @@ public class Soporte {
         return _id;
     }
 
-    public SimpleStringProperty idProperty() {
-        return new SimpleStringProperty(_id);
-    }
-
     public void setId(String _id) {
         this._id = _id;
+    }
+
+    public SimpleStringProperty idProperty() {
+        return new SimpleStringProperty(_id);
     }
 
     public String getNombre() {
         return nombre;
     }
 
-    public SimpleStringProperty nombreProperty() {
-        return new SimpleStringProperty(nombre);
-    }
-
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public SimpleStringProperty nombreProperty() {
+        return new SimpleStringProperty(nombre);
     }
 
     public String getApellido() {
         return apellido;
     }
 
-    public SimpleStringProperty apellidoProperty() {
-        return new SimpleStringProperty(apellido);
-    }
-
     public void setApellido(String apellido) {
         this.apellido = apellido;
+    }
+
+    public SimpleStringProperty apellidoProperty() {
+        return new SimpleStringProperty(apellido);
     }
 
     public String getUsuario() {
         return usuario;
     }
 
-    public SimpleStringProperty usuarioProperty() {
-        return new SimpleStringProperty(usuario);
-    }
-
     public void setUsuario(String usuario) {
         this.usuario = usuario;
+    }
+
+    public SimpleStringProperty usuarioProperty() {
+        return new SimpleStringProperty(usuario);
     }
 
     public String getPass() {
         return pass;
     }
 
-    public SimpleStringProperty passProperty() {
-        return new SimpleStringProperty(pass);
-    }
-
     public void setPass(String pass) {
         this.pass = pass;
+    }
+
+    public SimpleStringProperty passProperty() {
+        return new SimpleStringProperty(pass);
     }
 
     public String getType() {
         return type;
     }
 
-    public SimpleStringProperty typeProperty(){
-        return new SimpleStringProperty(type.equals("C") ? "Caja" : type.equals("S") ? "Atención al Cliente" : type.equals("R") ? "Créditos" : type.equals("G") ? "Gestor" : "Turno");
-    }
-
     public void setType(String type) {
         this.type = type;
+    }
+
+    public SimpleStringProperty typeProperty() {
+        return new SimpleStringProperty(type.equals("C") ? "Caja" : type.equals("S") ? "Atención al Cliente" : type.equals("R") ? "Créditos" : type.equals("G") ? "Gestor" : "Turno");
     }
 
     public boolean isPref() {
@@ -99,7 +98,7 @@ public class Soporte {
         this.pref = pref;
     }
 
-    public SimpleStringProperty prefsProperty(){
+    public SimpleStringProperty prefsProperty() {
         String prefStr = pref ? "Preferencia" : "Sin Preferencia";
         return new SimpleStringProperty(prefStr);
     }
@@ -111,19 +110,19 @@ public class Soporte {
                 "\"apellido\" : \"" + apellido + "\", " +
                 "\"usuario\" : \"" + usuario + "\", " +
                 "\"pass\" : \"" + pass + "\", " +
-                "\"type\" : \""+ type +"\"" +
+                "\"type\" : \"" + type + "\"" +
                 '}';
     }
 
-    public String toJSON(){
+    public String toJSON() {
         return "{" +
                 "\"_id\" : \"" + _id + "\", " +
                 "\"nombre\" : \"" + nombre + "\", " +
                 "\"apellido\" : \"" + apellido + "\", " +
                 "\"usuario\" : \"" + usuario + "\", " +
                 "\"pass\" : \"" + pass + "\", " +
-                "\"type\" : \""+ type +"\", " +
-                "\"pref\" : "+ pref +"" +
+                "\"type\" : \"" + type + "\", " +
+                "\"pref\" : " + pref + "" +
                 '}';
     }
 }

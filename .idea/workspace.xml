@@ -25,13 +25,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Vistas de Colaboradores, Eventos de Sockets&#10;&#10;Se agregó la vista para cada colaborador (colaborador_view.fxml), se agrego el evento newTurn para cada tipo de colaborador.">
-      <change afterPath="$PROJECT_DIR$/src/com/javier/pistio/utils/PageEventHelper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/Pistio_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/Pistio_jar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/websocket/socket.io.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/websocket/socket.io.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/javier/pistio/controllers/AdminMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/javier/pistio/controllers/AdminMenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/javier/pistio/controllers/ColaboradorViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/javier/pistio/controllers/ColaboradorViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/javier/pistio/modelos/Turno.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/javier/pistio/modelos/Turno.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/javier/pistio/ui/admin_menu.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/javier/pistio/ui/admin_menu.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/javier/pistio/controllers/TurnoViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/javier/pistio/controllers/TurnoViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/javier/pistio/utils/Util.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/javier/pistio/utils/Util.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -136,7 +134,7 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="dynamic.classpath" value="false" />
     <property name="extract.method.default.visibility" value="private" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/com/javier/pistio/utils" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -145,22 +143,23 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="project.structure.last.edited" value="Artifacts" />
-    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="recentsLimit" value="5" />
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\charl\Documents\GitProjects\Pistio\src\com\javier\pistio\utils" />
-      <recent name="C:\Users\charl\Documents\GitProjects\Pistio\src\com\javier\pistio\ui" />
-      <recent name="C:\Users\charl\Documents\GitProjects\Pistio\src\com\javier\pistio\media" />
-      <recent name="C:\Users\charl\Documents\GitProjects\Pistio\src\com\javier\pistio" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\charl\Documents\GitProjects\Pistio\src\com\javier\pistio\media" />
       <recent name="C:\Users\charl\Documents\GitProjects\Pistio\src\com\javier\pistio\ui" />
       <recent name="C:\Users\javier\Desktop\proyectos\Pistio\src\com\javier\pistio\ui" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\charl\Documents\GitProjects\Pistio\src\com\javier\pistio\media\audios" />
+      <recent name="C:\Users\charl\Documents\GitProjects\Pistio\src\com\javier\pistio\media" />
+      <recent name="C:\Users\charl\Documents\GitProjects\Pistio\src\com\javier\pistio\utils" />
+      <recent name="C:\Users\charl\Documents\GitProjects\Pistio\src\com\javier\pistio\ui" />
+      <recent name="C:\Users\charl\Documents\GitProjects\Pistio\src\com\javier\pistio" />
     </key>
   </component>
   <component name="RunManager">
@@ -296,6 +295,9 @@
       <workItem from="1590204239367" duration="1190000" />
       <workItem from="1590377374699" duration="12063000" />
       <workItem from="1590633855315" duration="8836000" />
+      <workItem from="1590745165665" duration="14589000" />
+      <workItem from="1590856737214" duration="1896000" />
+      <workItem from="1590870071668" duration="426000" />
     </task>
     <task id="LOCAL-00001" summary="Solucion al error de datos en tabla.&#10;&#10;Se agrego el metodo init en el socket para que sepuede llamar al principio del controlador Usuarios.">
       <created>1585251496181</created>
@@ -364,19 +366,27 @@
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="163" y="0" key="#Project_Structure" timestamp="1590857221980">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="163" y="0" key="#Project_Structure/0.0.1366.728@0.0.1366.728" timestamp="1590857221980" />
     <state x="160" y="25" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1587049376946">
       <screen x="0" y="0" width="1600" height="900" />
     </state>
     <state x="137" y="20" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.728@0.0.1366.728" timestamp="1584637389956" />
     <state x="160" y="25" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1600.900@0.0.1600.900" timestamp="1587049376946" />
-    <state x="488" y="74" key="#com.intellij.ide.util.MemberChooser" timestamp="1590641150720">
+    <state x="432" y="166" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1590748164055">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="488" y="74" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1590641150720" />
-    <state x="412" y="149" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1585622986425">
+    <state x="432" y="166" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.728@0.0.1366.728" timestamp="1590748164055" />
+    <state x="488" y="74" key="#com.intellij.ide.util.MemberChooser" timestamp="1590755282691">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="412" y="149" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1366.728@0.0.1366.728" timestamp="1585622986425" />
+    <state x="488" y="74" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1590755282691" />
+    <state x="412" y="149" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1590857933560">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="412" y="149" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1366.728@0.0.1366.728" timestamp="1590857933560" />
     <state x="413" y="112" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1585698833546">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -385,53 +395,53 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="0" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1585706881392" />
-    <state x="456" y="131" key="FileChooserDialogImpl" timestamp="1587049436995">
-      <screen x="0" y="0" width="1600" height="900" />
-    </state>
-    <state x="389" y="106" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1585622995793" />
-    <state x="456" y="131" key="FileChooserDialogImpl/0.0.1600.900@0.0.1600.900" timestamp="1587049436995" />
-    <state width="1323" height="179" key="GridCell.Tab.0.bottom" timestamp="1590645161739">
+    <state x="389" y="106" key="FileChooserDialogImpl" timestamp="1590857954673">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1590645161739" />
+    <state x="389" y="106" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1590857954673" />
+    <state x="456" y="131" key="FileChooserDialogImpl/0.0.1600.900@0.0.1600.900" timestamp="1587049436995" />
+    <state width="1323" height="198" key="GridCell.Tab.0.bottom" timestamp="1590862081340">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="198" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1590862081340" />
     <state width="1554" height="210" key="GridCell.Tab.0.bottom/0.0.1600.857@0.0.1600.857" timestamp="1587084975584" />
     <state width="1352" height="211" key="GridCell.Tab.0.bottom/0.0.1600.900@0.0.1600.900" timestamp="1587050363099" />
-    <state width="1323" height="179" key="GridCell.Tab.0.center" timestamp="1590645161739">
+    <state width="1323" height="198" key="GridCell.Tab.0.center" timestamp="1590862081340">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1590645161739" />
+    <state width="1323" height="198" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1590862081340" />
     <state width="1554" height="210" key="GridCell.Tab.0.center/0.0.1600.857@0.0.1600.857" timestamp="1587084975582" />
     <state width="1352" height="211" key="GridCell.Tab.0.center/0.0.1600.900@0.0.1600.900" timestamp="1587050363099" />
-    <state width="1323" height="179" key="GridCell.Tab.0.left" timestamp="1590645161738">
+    <state width="1323" height="198" key="GridCell.Tab.0.left" timestamp="1590862081339">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1590645161738" />
+    <state width="1323" height="198" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1590862081339" />
     <state width="1554" height="210" key="GridCell.Tab.0.left/0.0.1600.857@0.0.1600.857" timestamp="1587084975582" />
     <state width="1352" height="211" key="GridCell.Tab.0.left/0.0.1600.900@0.0.1600.900" timestamp="1587050363098" />
-    <state width="1323" height="179" key="GridCell.Tab.0.right" timestamp="1590645161739">
+    <state width="1323" height="198" key="GridCell.Tab.0.right" timestamp="1590862081340">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1590645161739" />
+    <state width="1323" height="198" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1590862081340" />
     <state width="1554" height="210" key="GridCell.Tab.0.right/0.0.1600.857@0.0.1600.857" timestamp="1587084975583" />
     <state width="1352" height="211" key="GridCell.Tab.0.right/0.0.1600.900@0.0.1600.900" timestamp="1587050363099" />
-    <state x="191" y="0" key="SettingsEditor" timestamp="1587049241553">
-      <screen x="0" y="0" width="1600" height="900" />
+    <state x="163" y="0" key="SettingsEditor" timestamp="1590857965474">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="163" y="0" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1585623016530" />
+    <state x="163" y="0" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1590857965474" />
     <state x="191" y="0" key="SettingsEditor/0.0.1600.900@0.0.1600.900" timestamp="1587049241553" />
-    <state x="403" y="0" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1587079650686">
-      <screen x="0" y="0" width="1600" height="857" />
+    <state x="344" y="0" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1590746913670">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="344" y="0" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1366.728@0.0.1366.728" timestamp="1585628818633" />
+    <state x="344" y="0" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1366.728@0.0.1366.728" timestamp="1590746913670" />
     <state x="403" y="0" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1600.857@0.0.1600.857" timestamp="1587079650686" />
-    <state x="413" y="145" key="extract.method.dialog" timestamp="1585336730604">
+    <state x="413" y="145" key="extract.method.dialog" timestamp="1590754068559">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="413" y="145" key="extract.method.dialog/0.0.1366.728@0.0.1366.728" timestamp="1585336730604" />
-    <state x="379" y="96" width="607" height="536" key="find.popup" timestamp="1590379276619">
+    <state x="413" y="145" key="extract.method.dialog/0.0.1366.728@0.0.1366.728" timestamp="1590754068559" />
+    <state x="379" y="96" width="607" height="582" key="find.popup" timestamp="1590749350532">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="379" y="96" width="607" height="536" key="find.popup/0.0.1366.728@0.0.1366.728" timestamp="1590379276619" />
+    <state x="379" y="96" width="607" height="582" key="find.popup/0.0.1366.728@0.0.1366.728" timestamp="1590749350532" />
     <state x="65" y="89" key="new project wizard" timestamp="1583794200784">
       <screen x="0" y="0" width="1366" height="728" />
     </state>

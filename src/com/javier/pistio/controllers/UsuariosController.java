@@ -182,7 +182,7 @@ public class UsuariosController implements Initializable {
         }
     }
 
-    private Label createLable(String text){
+    private Label createLabel(String text){
         return new Label(text);
     }
 
@@ -206,7 +206,7 @@ public class UsuariosController implements Initializable {
                 if(dialog != null) dialog.close();
             });
         });
-        ObservableList<Label> tipos = FXCollections.observableArrayList(createLable("Caja"), createLable("Atención al Cliente"), createLable("Créditos"), createLable("Gestor"), createLable("Turno"));
+        ObservableList<Label> tipos = FXCollections.observableArrayList(createLabel("Caja"), createLabel("Atención al Cliente"), createLabel("Créditos"), createLabel("Gestor"), createLabel("Turno"));
         type.setItems(tipos);
         inicializarTabla();
     }
